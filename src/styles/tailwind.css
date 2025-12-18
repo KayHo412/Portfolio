@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #8B5CF6; /* vivid-purple */
+    --color-primary-foreground: #FFFFFF; /* white */
+
+    /* Secondary Colors */
+    --color-secondary: #A78BFA; /* light-purple */
+    --color-secondary-foreground: #FFFFFF; /* white */
+
+    /* Accent Colors */
+    --color-accent: #C084FC; /* medium-purple */
+    --color-accent-foreground: #1E1B4B; /* deep-purple */
+
+    /* Background Colors */
+    --color-background: #0A0A0F; /* rich-black */
+    --color-foreground: #F8F9FA; /* off-white */
+
+    /* Surface Colors */
+    --color-card: #1E1B4B; /* deep-purple */
+    --color-card-foreground: #F8F9FA; /* off-white */
+    --color-popover: #1E1B4B; /* deep-purple */
+    --color-popover-foreground: #F8F9FA; /* off-white */
+
+    /* Muted Colors */
+    --color-muted: #2E2550; /* dark-purple */
+    --color-muted-foreground: #C4B5FD; /* pale-purple */
+
+    /* Border & Input */
+    --color-border: #3B2F5F; /* medium-dark-purple */
+    --color-input: #3B2F5F; /* medium-dark-purple */
+    --color-ring: #8B5CF6; /* vivid-purple */
+
+    /* Status Colors */
+    --color-success: #A78BFA; /* light-purple */
+    --color-success-foreground: #1E1B4B; /* deep-purple */
+    --color-warning: #C084FC; /* medium-purple */
+    --color-warning-foreground: #1E1B4B; /* deep-purple */
+    --color-error: #E879F9; /* bright-purple */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #E879F9; /* bright-purple */
+    --color-destructive-foreground: #FFFFFF; /* white */
+
+    /* CTA Color */
+    --color-cta: #9333EA; /* deep-vivid-purple */
+    --color-cta-foreground: #FFFFFF; /* white */
+
+    /* Trust Builder */
+    --color-trust: #7C3AED; /* royal-purple */
+    --color-trust-foreground: #FFFFFF; /* white */
+
+    /* Spacing */
+    --spacing-xs: 0.5rem; /* 8px */
+    --spacing-sm: 0.8125rem; /* 13px */
+    --spacing-md: 1.3125rem; /* 21px */
+    --spacing-lg: 2.125rem; /* 34px */
+    --spacing-xl: 3.4375rem; /* 55px */
+
+    /* Border Radius */
+    --radius-sm: 0.25rem; /* 4px */
+    --radius-md: 0.5rem; /* 8px */
+    --radius-lg: 0.75rem; /* 12px */
+    --radius-xl: 1rem; /* 16px */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+  }
+
+  button {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+  }
+
+  code, pre {
+    font-family: 'Fira Code', monospace;
+    font-weight: 400;
+  }
+}
+
+@layer utilities {
+  .neon-glow-primary {
+    filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.5)) drop-shadow(0 0 20px rgba(255, 20, 147, 0.3));
+  }
+
+  .neon-glow-secondary {
+    filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.5)) drop-shadow(0 0 20px rgba(0, 191, 255, 0.3));
+  }
+
+  .neon-glow-accent {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+  }
+
+  .neon-glow-cta {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.5)) drop-shadow(0 0 20px rgba(255, 107, 53, 0.3));
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+
+  .bounce-playful {
+    animation: bounce-playful 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes bounce-playful {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .slide-in-left {
+    animation: slide-in-left 0.3s ease-out;
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .fade-in-up {
+    animation: fade-in-up 0.5s ease-out;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
