@@ -23,7 +23,7 @@ const RouteLoadingFallback: React.FC = () => (
 
 const Routes: React.FC = () => {
   return (
-    <BrowserRouter basename="/Portfolio/">
+    <BrowserRouter>
       <ErrorBoundary>
         <ScrollToTop />
         <Layout>
