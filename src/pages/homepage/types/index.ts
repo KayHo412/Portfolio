@@ -6,14 +6,6 @@ export interface HeroSection {
   title: string;
   subtitle: string;
   description: string;
-  primaryCTA: {
-    text: string;
-    icon: LucideIconName;
-  };
-  secondaryCTA: {
-    text: string;
-    icon: LucideIconName;
-  };
 }
 
 export interface FeatureCard {

@@ -33,23 +33,27 @@ const CTASection = ({ socialLinks }: CTASectionProps) => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button
-              size="lg"
-              iconName="Mail"
-              iconPosition="left"
-              className="bg-cta hover:bg-cta/90 text-cta-foreground neon-glow-cta w-full sm:w-auto"
-            >
-              Send Me an Email
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              iconName="Download"
-              iconPosition="left"
-              className="border-primary text-primary hover:bg-primary/10 w-full sm:w-auto"
-            >
-              Download My CV
-            </Button>
+            <a href="mailto:khoaphan412@gmail.com">
+              <Button
+                size="lg"
+                iconName="Mail"
+                iconPosition="left"
+                className="bg-cta hover:bg-cta/90 text-cta-foreground neon-glow-cta w-full sm:w-auto"
+              >
+                Send Me an Email
+              </Button>
+            </a>
+            <a href="/Portfolio/KhoaHo_CV.docx" download="KhoaHo_CV.docx">
+              <Button
+                variant="outline"
+                size="lg"
+                iconName="Download"
+                iconPosition="left"
+                className="border-primary text-primary hover:bg-primary/10 w-full sm:w-auto"
+              >
+                Download My CV
+              </Button>
+            </a>
           </div>
 
           <div className="flex items-center justify-center space-x-6">

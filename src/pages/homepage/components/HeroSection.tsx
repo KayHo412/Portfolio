@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Icon from '../../../components/AppIcon';
-import Button from '../../../components/ui/Button';
 import type { HeroSection as HeroSectionType } from '../types';
 
 interface HeroSectionProps {
@@ -109,35 +107,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
         <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in-up delay-200">
           {data.description}
         </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
-          <Link to="/the-lab">
-            <Button
-              size="lg"
-              iconName={data.primaryCTA.icon}
-              iconPosition="right"
-              className="bg-cta hover:bg-cta/90 text-cta-foreground neon-glow-cta text-lg px-8 py-6"
-            >
-              {data.primaryCTA.text}
-            </Button>
-          </Link>
-
-          <Button
-            size="lg"
-            variant="outline"
-            iconName={data.secondaryCTA.icon}
-            iconPosition="left"
-            className="border-secondary text-secondary hover:bg-secondary/10 text-lg px-8 py-6"
-            onClick={() => {
-            const link = document.createElement('a');
-            link.href = '/public/first_resume.pdf';
-            link.download = 'first_resume.pdf';
-            link.click();
-  }}
-          >
-            {data.secondaryCTA.text}
-          </Button>
-        </div>
 
         <div className="mt-16 flex items-center justify-center gap-8 animate-fade-in-up delay-400">
           <div className="flex items-center gap-2 text-muted-foreground">

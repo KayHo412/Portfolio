@@ -17,14 +17,6 @@ const Homepage: React.FC = () => {
     subtitle: "Code Chef & Digital Shuttlecock Master",
     description:
       "I code with the precision of a badminton champion and the creativity of a master chef. Welcome to my funky, neon-lit corner of the internet where technical excellence meets playful innovation.",
-    primaryCTA: {
-      text: "Let's Cook Up Something Amazing",
-      icon: "Rocket",
-    },
-    secondaryCTA: {
-      text: "Download My Recipe Book",
-      icon: "Download",
-    },
   };
 
   const features: FeatureCard[] = [

@@ -78,10 +78,8 @@ module.exports = {
         sm: "var(--radius-sm)",
       },
       fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
-        rajdhani: ['Rajdhani', 'sans-serif'],
-        firacode: ['Fira Code', 'monospace'],
+        geist: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        'geist-mono': ['Geist Mono', 'Courier New', 'monospace'],
       },
       spacing: {
         'xs': 'var(--spacing-xs)',
@@ -91,11 +89,11 @@ module.exports = {
         'xl': 'var(--spacing-xl)',
       },
       boxShadow: {
-        'neon-primary': '0 0 20px rgba(255, 20, 147, 0.3)',
-        'neon-secondary': '0 0 20px rgba(0, 191, 255, 0.3)',
-        'neon-accent': '0 0 20px rgba(255, 215, 0, 0.3)',
-        'neon-cta': '0 0 20px rgba(255, 107, 53, 0.3)',
-        'subtle': '0 4px 6px rgba(0, 0, 0, 0.1)',
+        'neon-primary': '0 0 20px rgba(15, 118, 110, 0.25)',
+        'neon-secondary': '0 0 20px rgba(3, 105, 161, 0.25)',
+        'neon-accent': '0 0 20px rgba(71, 85, 105, 0.15)',
+        'neon-cta': '0 0 20px rgba(2, 132, 199, 0.25)',
+        'subtle': '0 4px 6px rgba(0, 0, 0, 0.15)',
       },
       keyframes: {
         "accordion-down": {
