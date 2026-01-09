@@ -12,7 +12,6 @@ import {
   Experience,
   Hobby,
   Value,
-  Testimonial,
   CulturalExperience,
   SocialLink } from
 './types';

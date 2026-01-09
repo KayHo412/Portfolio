@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import Header from '../../components/ui/Header';
+import { Helmet } from 'react-helmet';
 import HeroSection from './components/HeroSection';
 import FeatureCards from './components/FeatureCards';
 import SkillsShowcase from './components/SkillsShowcase';
@@ -12,11 +11,7 @@ import type {
   SocialLink,
 } from './types';
 
-const Homepage = () => {
-  useEffect(() => {
-    document.title = "Khoa's Digital Playground - Code Chef & Shuttlecock Master";
-  }, []);
-
+const Homepage: React.FC = () => {
   const heroData: HeroSectionType = {
     title: "Khoa's Digital Playground",
     subtitle: "Code Chef & Digital Shuttlecock Master",
@@ -105,30 +100,39 @@ const Homepage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <ParticleBackground />
-      <Header />
+    <>
+      <Helmet>
+        <title>Khoa's Digital Playground - Code Chef & Shuttlecock Master</title>
+        <meta
+          name="description"
+          content="I code with the precision of a badminton champion and the creativity of a master chef. Explore my full-stack development projects and skills."
+        />
+      </Helmet>
 
-      <main className="relative z-10">
-        <HeroSection data={heroData} />
-        <FeatureCards features={features} />
-        <SkillsShowcase skills={skills} />
-        <CTASection socialLinks={socialLinks} />
-      </main>
+      <div className="min-h-screen bg-background text-foreground">
+        <ParticleBackground />
 
-      <footer className="relative z-10 bg-card border-t border-border py-8 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-muted-foreground font-fira-code text-sm">
-            © {new Date().getFullYear()} Khoa's Digital Playground. Crafted with{" "}
-            <span className="text-primary">♥</span> and{" "}
-            <span className="text-secondary">code</span>
-          </p>
-          <p className="text-muted-foreground font-fira-code text-xs mt-2">
-            Smashing bugs and serving solutions, one commit at a time
-          </p>
-        </div>
-      </footer>
-    </div>
+        <main className="relative z-10">
+          <HeroSection data={heroData} />
+          <FeatureCards features={features} />
+          <SkillsShowcase skills={skills} />
+          <CTASection socialLinks={socialLinks} />
+        </main>
+
+        <footer className="relative z-10 bg-card border-t border-border py-8 px-4">
+          <div className="max-w-7xl mx-auto text-center">
+            <p className="text-muted-foreground font-fira-code text-sm">
+              © {new Date().getFullYear()} Khoa's Digital Playground. Crafted with{" "}
+              <span className="text-primary">♥</span> and{" "}
+              <span className="text-secondary">code</span>
+            </p>
+            <p className="text-muted-foreground font-fira-code text-xs mt-2">
+              Smashing bugs and serving solutions, one commit at a time
+            </p>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 };
 

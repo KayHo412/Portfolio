@@ -31,7 +31,7 @@ const CulturalTimeline = ({ events }: CulturalTimelineProps) => {
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent neon-glow-primary hidden md:block" />
 
       <div className="space-y-8">
-        {events.map((event, index) => (
+        {events.map((event) => (
           <div
             key={event.id}
             className={`relative pl-0 md:pl-20 transition-all duration-500 ${

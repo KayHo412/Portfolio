@@ -1,23 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Icon from '../AppIcon';
 import Button from './Button';
+import { NAVIGATION_ITEMS } from '../../constants/navigation';
 
 interface HeaderProps {
   className?: string;
 }
 
-const Header = ({ className = '' }: HeaderProps) => {
+const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-
-  const navigationItems = [
-    { path: '/homepage', label: 'Home', icon: 'Home' },
-    { path: '/superpower-kitchen', label: 'Superpower Kitchen', icon: 'ChefHat' },
-    { path: '/culture-blend', label: 'Culture Blend', icon: 'Globe' },
-    { path: '/about', label: 'About', icon: 'User' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,15 +30,15 @@ const Header = ({ className = '' }: HeaderProps) => {
     }
   }, [isMobileMenuOpen]);
 
-  const isActivePath = (path: string) => location.pathname === path;
+  const isActivePath = useCallback((path: string) => location.pathname === path, [location.pathname]);
 
-  const handleMobileMenuToggle = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const handleMobileMenuToggle = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
 
-  const handleNavClick = () => {
+  const handleNavClick = useCallback(() => {
     setIsMobileMenuOpen(false);
-  };
+  }, []);
 
   return (
     <>
@@ -56,47 +50,10 @@ const Header = ({ className = '' }: HeaderProps) => {
         <div className="w-full">
           <div className="flex items-center justify-between h-16 px-4 lg:px-8">
             <Link
-              to="/homepage"
+              to="/"
               className="flex items-center space-x-3 group"
               onClick={handleNavClick}
             >
-              <div className="relative">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="transition-transform duration-300 group-hover:scale-110"
-                >
-                  <circle
-                    cx="20"
-                    cy="20"
-                    r="18"
-                    stroke="url(#gradient)"
-                    strokeWidth="2"
-                    className="neon-glow-primary"
-                  />
-                  <path
-                    d="M20 8L24 16L32 18L26 24L28 32L20 28L12 32L14 24L8 18L16 16L20 8Z"
-                    fill="url(#gradient)"
-                    className="neon-glow-primary"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="gradient"
-                      x1="0"
-                      y1="0"
-                      x2="40"
-                      y2="40"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#FF1493" />
-                      <stop offset="1" stopColor="#00BFFF" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
               <div className="hidden sm:block">
                 <h1 className="text-xl font-orbitron font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   Khoa's Digital Playground
@@ -105,7 +62,7 @@ const Header = ({ className = '' }: HeaderProps) => {
             </Link>
 
             <nav className="hidden lg:flex items-center space-x-1">
-              {navigationItems.map((item) => (
+              {NAVIGATION_ITEMS.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
@@ -127,6 +84,23 @@ const Header = ({ className = '' }: HeaderProps) => {
             </nav>
 
             <div className="hidden lg:flex items-center space-x-4">
+              <Button
+                variant="outline"
+                size="sm"
+                iconName="Download"
+                iconPosition="left"
+                className="border-accent text-accent hover:bg-accent/10"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/Portfolio/KhoaHo_CV.docx';
+                  link.download = 'KhoaHo_CV.docx';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+              >
+                Download CV
+              </Button>
               <Button
                 variant="outline"
                 size="sm"
@@ -165,7 +139,7 @@ const Header = ({ className = '' }: HeaderProps) => {
           />
           <nav className="relative h-full flex flex-col pt-20 px-6 overflow-y-auto animate-slide-in-right">
             <div className="flex flex-col space-y-2">
-              {navigationItems.map((item) => (
+              {NAVIGATION_ITEMS.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
@@ -182,6 +156,23 @@ const Header = ({ className = '' }: HeaderProps) => {
             </div>
 
             <div className="mt-8 pt-8 border-t border-border space-y-3">
+              <Button
+                variant="outline"
+                fullWidth
+                iconName="Download"
+                iconPosition="left"
+                className="border-accent text-accent hover:bg-accent/10"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/Portfolio/KhoaHo_CV.docx';
+                  link.download = 'KhoaHo_CV.docx';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+              >
+                Download CV
+              </Button>
               <Button
                 variant="outline"
                 fullWidth

@@ -19,9 +19,13 @@ const ParticleBackground = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const particles: Particle[] = [];
-    const particleCount = 50;
+    // Responsive particle count based on device
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 15 : 35; // Reduced from 50
+    const connectionDistance = isMobile ? 100 : 150;
     const colors = ['#FF1493', '#00BFFF', '#FFD700'];
+
+    const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -35,6 +39,7 @@ const ParticleBackground = () => {
       });
     }
 
+    let frameCount = 0;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -53,22 +58,28 @@ const ParticleBackground = () => {
         ctx.fill();
       });
 
-      particles.forEach((particle, i) => {
-        particles.slice(i + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+      // Only draw connections every 2 frames to reduce CPU usage
+      frameCount++;
+      if (frameCount % 2 === 0) {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const particle = particles[i];
+            const otherParticle = particles[j];
+            const dx = particle.x - otherParticle.x;
+            const dy = particle.y - otherParticle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 20, 147, ${1 - distance / 150})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
+            if (distance < connectionDistance) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(255, 20, 147, ${1 - distance / connectionDistance})`;
+              ctx.lineWidth = 0.5;
+              ctx.moveTo(particle.x, particle.y);
+              ctx.lineTo(otherParticle.x, otherParticle.y);
+              ctx.stroke();
+            }
           }
-        });
-      });
+        }
+      }
 
       requestAnimationFrame(animate);
     };

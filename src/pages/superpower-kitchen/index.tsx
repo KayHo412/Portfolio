@@ -12,13 +12,10 @@ import {
   QuizQuestion,
 } from './types';
 
-const SuperpowerKitchen = () => {
+const SuperpowerKitchen: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [showQuiz, setShowQuiz] = useState(false);
   const [quizScore, setQuizScore] = useState<number | null>(null);
-  const [activeTab, setActiveTab] = useState<'skills'>(
-    'skills'
-  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
