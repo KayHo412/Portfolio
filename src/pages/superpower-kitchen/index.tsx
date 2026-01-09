@@ -365,45 +365,6 @@ const SuperpowerKitchen: React.FC = () => {
 
           </div>
         </main>
-
-        <footer className="bg-card border-t-2 border-border py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-              <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Khoa's Digital Playground. All rights reserved.
-              </p>
-              <div className="flex items-center space-x-6">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                  aria-label="GitHub"
-                >
-                  <Icon name="Github" size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-secondary transition-colors duration-200"
-                  aria-label="LinkedIn"
-                >
-                  <Icon name="Linkedin" size={20} />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-accent transition-colors duration-200"
-                  aria-label="Twitter"
-                >
-                  <Icon name="Twitter" size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );

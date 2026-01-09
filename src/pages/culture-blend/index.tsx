@@ -284,37 +284,6 @@ const CultureBlend = () => {
             </section>
           </div>
         </main>
-
-        {/* Footer */}
-        <footer className="border-t border-border py-8 px-4 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Khoa's Digital Playground. Crafted with precision and cultural awareness.
-              </p>
-              <div className="flex items-center gap-6">
-                <a
-                  href="https://github.com/KayHo412"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                  aria-label="GitHub Profile">
-
-                  <Icon name="Github" size={20} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/khoa-phan-ho-75771b2a9/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-secondary transition-colors duration-200"
-                  aria-label="LinkedIn Profile">
-
-                  <Icon name="Linkedin" size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </>);
 
