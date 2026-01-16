@@ -43,8 +43,10 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-card/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
+          isScrolled
+            ? 'glass-dark shadow-lg'
+            : 'bg-transparent'
         } ${className}`}
       >
         <div className="w-full">
@@ -55,8 +57,8 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               onClick={handleNavClick}
             >
               <div className="hidden sm:block">
-                <h1 className="text-xl font-orbitron font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Khoa's Digital Playground
+                <h1 className="text-lg font-bold gradient-text-primary whitespace-nowrap">
+                  Khoa's Portfolio
                 </h1>
               </div>
             </Link>
@@ -66,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`relative px-4 py-2 rounded-md font-rajdhani font-semibold text-sm transition-all duration-300 group ${
+                  className={`relative px-4 py-2 rounded-lg font-medium text-sm transition-smooth ${
                     isActivePath(item.path)
                       ? 'text-primary' :'text-muted-foreground hover:text-foreground'
                   }`}
@@ -76,20 +78,20 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                     <span>{item.label}</span>
                   </span>
                   {isActivePath(item.path) && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary neon-glow-primary" />
+                    <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary neon-glow-primary rounded-full" />
                   )}
-                  <span className="absolute inset-0 bg-primary/10 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300" />
+                  <span className="absolute inset-0 bg-primary/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300" />
                 </Link>
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center space-x-4">
+            <div className="hidden lg:flex items-center space-x-3">
               <Button
                 variant="outline"
                 size="sm"
                 iconName="Download"
                 iconPosition="left"
-                className="border-accent text-accent hover:bg-accent/10"
+                className="border-accent/30 text-accent hover:bg-accent/10 hover:border-accent/60 transition-smooth"
                 onClick={() => {
                   const link = document.createElement('a');
                   link.href = '/Portfolio/KhoaHo_CV.docx';
@@ -99,14 +101,14 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                   document.body.removeChild(link);
                 }}
               >
-                Download CV
+                CV
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 iconName="Github"
                 iconPosition="left"
-                className="border-secondary text-secondary hover:bg-secondary/10"
+                className="border-secondary/30 text-secondary hover:bg-secondary/10 hover:border-secondary/60 transition-smooth"
               >
                 GitHub
               </Button>
@@ -114,15 +116,15 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 size="sm"
                 iconName="Mail"
                 iconPosition="left"
-                className="bg-cta hover:bg-cta/90 text-cta-foreground neon-glow-cta"
+                className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg shadow-primary/50 text-white transition-smooth"
               >
-                Let's Connect
+                Connect
               </Button>
             </div>
 
             <button
               onClick={handleMobileMenuToggle}
-              className="lg:hidden p-2 rounded-md text-foreground hover:bg-muted transition-colors duration-200"
+              className="lg:hidden p-2 rounded-lg text-foreground hover:bg-muted/50 transition-colors duration-200"
               aria-label="Toggle mobile menu"
             >
               <Icon name={isMobileMenuOpen ? 'X' : 'Menu'} size={24} />
@@ -134,7 +136,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="absolute inset-0 bg-background/95 backdrop-blur-md"
+            className="absolute inset-0 bg-background/80 backdrop-blur-md"
             onClick={handleMobileMenuToggle}
           />
           <nav className="relative h-full flex flex-col pt-20 px-6 overflow-y-auto animate-slide-in-right">
@@ -144,9 +146,10 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                   key={item.path}
                   to={item.path}
                   onClick={handleNavClick}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg font-rajdhani font-semibold text-lg transition-all duration-300 ${
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-medium text-lg transition-smooth ${
                     isActivePath(item.path)
-                      ? 'bg-primary/20 text-primary neon-glow-primary' :'text-muted-foreground hover:bg-muted hover:text-foreground'
+                      ? 'bg-primary/20 text-primary neon-glow-primary'
+                      :'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
                   }`}
                 >
                   <Icon name={item.icon} size={24} />
@@ -155,13 +158,13 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               ))}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-border space-y-3">
+            <div className="mt-8 pt-8 border-t border-border/50 space-y-3">
               <Button
                 variant="outline"
                 fullWidth
                 iconName="Download"
                 iconPosition="left"
-                className="border-accent text-accent hover:bg-accent/10"
+                className="border-accent/30 text-accent hover:bg-accent/10"
                 onClick={() => {
                   const link = document.createElement('a');
                   link.href = '/Portfolio/KhoaHo_CV.docx';
@@ -178,15 +181,15 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 fullWidth
                 iconName="Github"
                 iconPosition="left"
-                className="border-secondary text-secondary hover:bg-secondary/10"
+                className="border-secondary/30 text-secondary hover:bg-secondary/10"
               >
-                GitHub Profile
+                GitHub
               </Button>
               <Button
                 fullWidth
                 iconName="Mail"
                 iconPosition="left"
-                className="bg-cta hover:bg-cta/90 text-cta-foreground neon-glow-cta"
+                className="bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg"
               >
                 Let's Connect
               </Button>

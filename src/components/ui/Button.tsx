@@ -6,27 +6,27 @@ import Icon from '../AppIcon';
 import * as LucideIcons from 'lucide-react';
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     {
         variants: {
             variant: {
-                default: "bg-primary text-primary-foreground hover:bg-primary/90",
-                destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-                outline: "border border-input hover:bg-accent hover:text-accent-foreground",
-                secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground",
+                default: "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg hover:shadow-primary/40",
+                destructive: "bg-error text-error-foreground hover:bg-error/90 hover:shadow-lg hover:shadow-error/40",
+                outline: "border border-primary/30 text-foreground hover:bg-primary/10 hover:border-primary/60 transition-smooth",
+                secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/90 hover:shadow-lg hover:shadow-secondary/40",
+                ghost: "hover:bg-muted/50 text-foreground transition-smooth",
                 link: "text-primary underline-offset-4 hover:underline",
-                success: "bg-success text-success-foreground hover:bg-success/90",
-                warning: "bg-warning text-warning-foreground hover:bg-warning/90",
-                danger: "bg-error text-error-foreground hover:bg-error/90",
+                success: "bg-success text-success-foreground hover:bg-success/90 hover:shadow-lg",
+                warning: "bg-warning text-warning-foreground hover:bg-warning/90 hover:shadow-lg",
+                danger: "bg-error text-error-foreground hover:bg-error/90 hover:shadow-lg",
             },
             size: {
-                default: "h-10 px-4 py-2",
-                sm: "h-9 rounded-md px-3",
-                lg: "h-11 rounded-md px-8",
+                default: "h-10 px-5 py-2",
+                sm: "h-9 rounded-md px-3 text-sm",
+                lg: "h-12 rounded-lg px-8 text-base",
                 icon: "h-10 w-10",
                 xs: "h-8 rounded-md px-2 text-xs",
-                xl: "h-12 rounded-md px-10 text-base",
+                xl: "h-12 rounded-lg px-10 text-base",
             },
         },
         defaultVariants: {

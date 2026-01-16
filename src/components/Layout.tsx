@@ -10,16 +10,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header />
       <main className="flex-1 relative z-10">{children}</main>
-      <footer className="relative z-10 bg-card border-t border-border py-8 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-muted-foreground font-fira-code text-sm">
-            © {new Date().getFullYear()} Khoa's Digital Playground. Crafted with{' '}
-            <span className="text-primary">♥</span> and{' '}
-            <span className="text-secondary">code</span>
-          </p>
-          <p className="text-muted-foreground font-fira-code text-xs mt-2">
-            Smashing bugs and serving solutions, one commit at a time
-          </p>
+      <footer className="relative z-10 glass-dark border-t border-primary/10 py-12 px-4 mt-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              © {new Date().getFullYear()} Khoa Ho. Crafted with{' '}
+              <span className="text-primary font-semibold">♥</span> using modern web technologies
+            </p>
+            <p className="text-muted-foreground/70 text-xs mt-3 font-medium">
+              Building elegant solutions, one pixel at a time
+            </p>
+          </div>
         </div>
       </footer>
     </div>

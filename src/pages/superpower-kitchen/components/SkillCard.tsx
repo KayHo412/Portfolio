@@ -91,38 +91,38 @@ const SkillCard = ({ skill, index }: SkillCardProps) => {
         </div>
 
         <div className="absolute inset-0 backface-hidden rotate-y-180">
-          <div className="h-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-primary rounded-xl p-6 neon-glow-primary">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-lg font-orbitron font-bold text-foreground">
+          <div className="h-full bg-gradient-to-br from-primary/20 to-secondary/20 border-2 border-primary rounded-xl p-6 neon-glow-primary flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between mb-4 flex-shrink-0">
+              <h4 className="text-lg font-orbitron font-bold text-foreground truncate">
                 {skill.metaphor.item}
               </h4>
-              <Icon name={getMetaphorIcon()} size={24} className="text-primary" />
+              <Icon name={getMetaphorIcon()} size={24} className="text-primary flex-shrink-0 ml-2" />
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 overflow-y-auto flex-1">
               <div>
                 <p className="text-sm text-muted-foreground mb-2">Metaphor Type:</p>
-                <p className="text-base font-rajdhani font-semibold text-foreground capitalize">
+                <p className="text-base font-rajdhani font-semibold text-foreground capitalize break-words">
                   {skill.metaphor.type}
                 </p>
               </div>
 
               <div>
                 <p className="text-sm text-muted-foreground mb-2">Description:</p>
-                <p className="text-sm text-foreground leading-relaxed">
+                <p className="text-sm text-foreground leading-relaxed break-words">
                   {skill.metaphor.description}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-border">
+              <div className="pt-4 border-t border-border flex-shrink-0">
                 <p className="text-xs text-muted-foreground mb-2">Category:</p>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-rajdhani font-semibold">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-accent/20 text-accent text-xs font-rajdhani font-semibold truncate">
                   {skill.category}
                 </span>
               </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-center">
+            <div className="mt-4 flex items-center justify-center flex-shrink-0">
               <span className="text-xs text-muted-foreground font-rajdhani">
                 Click to flip back
               </span>

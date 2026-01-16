@@ -7,68 +7,69 @@
 
 @layer base {
   :root {
-    /* Cool Monochrome Palette */
-    /* Primary - Cool Blue-Gray */
-    --color-primary: #0F766E; /* teal-dark */
-    --color-primary-foreground: #F0F9FF; /* near-white */
+    /* Modern Refined Palette - Inspired by aura.build */
+    /* Primary - Warm Gradient Base */
+    --color-primary: #6366F1; /* Modern Indigo */
+    --color-primary-foreground: #FFFFFF; /* pure white */
 
-    /* Secondary - Cool Blue */
-    --color-secondary: #0369A1; /* cool-blue */
-    --color-secondary-foreground: #F0F9FF; /* near-white */
+    /* Secondary - Complementary Cool */
+    --color-secondary: #06B6D4; /* Cyan - modern & fresh */
+    --color-secondary-foreground: #FFFFFF; /* white */
 
-    /* Accent - Slate Blue */
-    --color-accent: #475569; /* slate-600 */
-    --color-accent-foreground: #F8FAFC; /* slate-50 */
+    /* Accent - Soft Warm */
+    --color-accent: #F59E0B; /* Amber - warm accent */
+    --color-accent-foreground: #FFFFFF; /* white */
 
-    /* Background Colors */
-    --color-background: #0F172A; /* slate-950 */
-    --color-foreground: #F1F5F9; /* slate-100 */
+    /* Background Colors - Modern Dark Mode */
+    --color-background: #0F172A; /* Deep slate (kept dark) */
+    --color-foreground: #F8FAFC; /* Almost white - excellent contrast */
 
-    /* Surface Colors */
-    --color-card: #1E293B; /* slate-900 */
-    --color-card-foreground: #F1F5F9; /* slate-100 */
-    --color-popover: #1E293B; /* slate-900 */
-    --color-popover-foreground: #F1F5F9; /* slate-100 */
+    /* Surface Colors - Glassmorphism Ready */
+    --color-card: #1E293B; /* Slate-900 with transparency for glass effect */
+    --color-card-foreground: #F8FAFC; /* Near white text */
+    --color-popover: #1E293B; /* Same as card for consistency */
+    --color-popover-foreground: #F8FAFC; /* Near white text */
 
     /* Muted Colors */
-    --color-muted: #334155; /* slate-700 */
-    --color-muted-foreground: #CBD5E1; /* slate-300 */
+    --color-muted: #64748B; /* Slate-500 - softer than before */
+    --color-muted-foreground: #CBD5E1; /* Slate-300 - better contrast */
 
-    /* Border & Input */
-    --color-border: #334155; /* slate-700 */
-    --color-input: #334155; /* slate-700 */
-    --color-ring: #0369A1; /* cool-blue */
+    /* Border & Input - Softer appearance */
+    --color-border: #334155; /* Slate-700 subtle borders */
+    --color-input: #334155; /* Slate-700 input backgrounds */
+    --color-ring: #6366F1; /* Primary indigo for focus states */
 
-    /* Status Colors */
-    --color-success: #059669; /* emerald */
-    --color-success-foreground: #F0FDF4; /* emerald-50 */
-    --color-warning: #EA580C; /* orange */
-    --color-warning-foreground: #FFF7ED; /* orange-50 */
-    --color-error: #DC2626; /* red */
-    --color-error-foreground: #FEF2F2; /* red-50 */
-    --color-destructive: #DC2626; /* red */
-    --color-destructive-foreground: #F1F5F9; /* slate-100 */
+    /* Status Colors - Refined Palette */
+    --color-success: #10B981; /* Emerald - more vibrant */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #F59E0B; /* Amber - warm and noticeable */
+    --color-warning-foreground: #FFFFFF; /* white */
+    --color-error: #EF4444; /* Red - more balanced */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-destructive: #EF4444; /* Red */
+    --color-destructive-foreground: #FFFFFF; /* white */
 
-    /* CTA Color - Cool Blue Accent */
-    --color-cta: #0284C7; /* sky-blue */
-    --color-cta-foreground: #F0F9FF; /* sky-50 */
+    /* CTA Color - Premium Gradient Candidate */
+    --color-cta: #6366F1; /* Indigo - premium feel */
+    --color-cta-foreground: #FFFFFF; /* white */
 
-    /* Trust Builder - Teal */
-    --color-trust: #0D9488; /* teal */
-    --color-trust-foreground: #F0FDFA; /* teal-50 */
+    /* Trust Builder - Cool & Reliable */
+    --color-trust: #06B6D4; /* Cyan - tech-forward */
+    --color-trust-foreground: #FFFFFF; /* white */
 
-    /* Spacing */
+    /* Spacing - Generous & Rhythmic */
     --spacing-xs: 0.5rem; /* 8px */
     --spacing-sm: 0.8125rem; /* 13px */
     --spacing-md: 1.3125rem; /* 21px */
     --spacing-lg: 2.125rem; /* 34px */
     --spacing-xl: 3.4375rem; /* 55px */
 
-    /* Border Radius */
+    /* Border Radius - Modern Rounded Corners */
     --radius-sm: 0.375rem; /* 6px */
     --radius-md: 0.5rem; /* 8px */
     --radius-lg: 0.75rem; /* 12px */
     --radius-xl: 1rem; /* 16px */
+    --radius-2xl: 1.25rem; /* 20px - new for modern look */
   }
 
   * {
@@ -80,12 +81,35 @@
     font-family: 'Geist', system-ui, -apple-system, sans-serif;
     font-weight: 400;
     letter-spacing: -0.01em;
+    line-height: 1.6;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Enhanced Typography Hierarchy - aura.build inspired */
+  h1 {
     font-family: 'Geist', system-ui, -apple-system, sans-serif;
-    font-weight: 700;
+    @apply text-5xl md:text-6xl font-bold tracking-tight mb-4;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    @apply text-4xl md:text-5xl font-bold tracking-tight mb-4;
     letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    @apply text-2xl md:text-3xl font-bold tracking-tight mb-3;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+  }
+
+  h4, h5, h6 {
+    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    @apply font-bold tracking-tight;
+    letter-spacing: -0.01em;
   }
 
   button {
@@ -101,26 +125,90 @@
 }
 
 @layer utilities {
+  /* Glassmorphism Effects - Key aura.build Feature */
+  .glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-xl bg-slate-950/50 border border-slate-700/50;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-lg bg-slate-900/40 border border-slate-700/30;
+  }
+
+  /* Premium Gradient Overlays */
+  .gradient-primary {
+    @apply bg-gradient-to-br from-indigo-500/20 via-transparent to-cyan-500/10;
+  }
+
+  .gradient-secondary {
+    @apply bg-gradient-to-tr from-cyan-500/15 via-transparent to-amber-500/10;
+  }
+
+  .gradient-text-primary {
+    @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-secondary {
+    @apply bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent;
+  }
+
+  /* Soft Glow Effects - Subtle Animation */
+  .glow-soft-primary {
+    @apply shadow-lg shadow-indigo-500/20;
+  }
+
+  .glow-soft-secondary {
+    @apply shadow-lg shadow-cyan-500/20;
+  }
+
+  .glow-soft-accent {
+    @apply shadow-lg shadow-amber-500/20;
+  }
+
+  /* Modern Neon Glows - Refined Version */
   .neon-glow-primary {
-    filter: drop-shadow(0 0 12px rgba(15, 118, 110, 0.4)) drop-shadow(0 0 24px rgba(15, 118, 110, 0.2));
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3)) drop-shadow(0 0 40px rgba(99, 102, 241, 0.15));
   }
 
   .neon-glow-secondary {
-    filter: drop-shadow(0 0 12px rgba(3, 105, 161, 0.4)) drop-shadow(0 0 24px rgba(3, 105, 161, 0.2));
+    filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3)) drop-shadow(0 0 40px rgba(6, 182, 212, 0.15));
   }
 
   .neon-glow-accent {
-    filter: drop-shadow(0 0 12px rgba(71, 85, 105, 0.3)) drop-shadow(0 0 24px rgba(71, 85, 105, 0.15));
+    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3)) drop-shadow(0 0 40px rgba(245, 158, 11, 0.15));
   }
 
-  .neon-glow-cta {
-    filter: drop-shadow(0 0 12px rgba(2, 132, 199, 0.4)) drop-shadow(0 0 24px rgba(2, 132, 199, 0.2));
-  }
-
+  /* Subtle Text Shadow */
   .text-shadow-glow {
-    text-shadow: 0 0 12px currentColor, 0 0 24px currentColor;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
+  /* Smooth Transitions for Interactive Elements */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .transition-smooth-lg {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  /* Modern Blur Effects */
+  .blur-subtle {
+    backdrop-filter: blur(8px);
+  }
+
+  .blur-medium {
+    backdrop-filter: blur(12px);
+  }
+
+  .blur-heavy {
+    backdrop-filter: blur(20px);
+  }
+
+  /* Bounce Playful Animation - Kept from original */
   .bounce-playful {
     animation: bounce-playful 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
@@ -134,8 +222,9 @@
     }
   }
 
+  /* Slide In Animations */
   .slide-in-left {
-    animation: slide-in-left 0.3s ease-out;
+    animation: slide-in-left 0.4s ease-out;
   }
 
   @keyframes slide-in-left {
@@ -161,6 +250,41 @@
     to {
       transform: translateY(0);
       opacity: 1;
+    }
+  }
+
+  /* Modern Float Animation */
+  .float-subtle {
+    animation: float-subtle 3s ease-in-out infinite;
+  }
+
+  @keyframes float-subtle {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Shimmer Effect for Loading States */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
     }
   }
 }

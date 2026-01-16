@@ -8,59 +8,66 @@ interface HobbiesSectionProps {
 
 const HobbiesSection = ({ hobbies }: HobbiesSectionProps) => {
   return (
-    <section className="py-20 bg-gradient-to-b from-card to-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20 neon-glow-accent mb-4">
-            <Icon name="Heart" size={20} className="text-accent" />
-            <span className="text-sm font-rajdhani font-semibold text-accent">Beyond Code</span>
+    <section className="py-32 bg-gradient-to-b from-background to-background/50">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-20 animate-fade-in-up">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 glass-card rounded-full border-0 mb-4">
+            <Icon name="Heart" size={18} className="text-accent" />
+            <span className="text-sm font-semibold text-foreground">Beyond Code</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-orbitron font-bold text-foreground mb-4">
-            My <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Passions</span>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            My <span className="gradient-text-primary">Passions</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Where precision meets creativity - my hobbies shape my approach to development
           </p>
         </div>
 
+        {/* Hobbies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {hobbies.map((hobby, index) => (
             <div
               key={hobby.id}
-              className="group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/50 transition-all duration-500 animate-fade-in-up"
+              className="group relative glass-card rounded-2xl overflow-hidden border-0 hover:shadow-xl hover:shadow-primary/20 transition-smooth animate-fade-in-up flex flex-col"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative h-64 overflow-hidden">
+              {/* Image Section */}
+              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20">
                 <Image
                   src={hobby.image}
                   alt={hobby.alt}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-                <div className="absolute top-4 right-4 w-16 h-16 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center neon-glow-accent">
-                  <Icon name={hobby.icon} size={32} className="text-accent-foreground" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+
+                {/* Icon Badge */}
+                <div className="absolute top-4 right-4 w-14 h-14 bg-accent/90 backdrop-blur-md rounded-lg flex items-center justify-center shadow-lg">
+                  <Icon name={hobby.icon} size={28} className="text-accent-foreground" />
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-2xl font-orbitron font-bold text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+              {/* Content Section */}
+              <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-smooth">
                   {hobby.name}
                 </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">{hobby.description}</p>
+                <p className="text-muted-foreground mb-6 leading-relaxed flex-1">
+                  {hobby.description}
+                </p>
 
+                {/* Skills Tags */}
                 <div className="flex flex-wrap gap-2">
                   {hobby.skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-muted rounded-full text-xs font-medium text-foreground hover:bg-accent/20 hover:text-accent transition-colors duration-200"
+                      className="px-3 py-1 glass-card rounded-lg text-xs font-semibold text-foreground/80 hover:text-accent transition-smooth border-0"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
-
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             </div>
           ))}
         </div>

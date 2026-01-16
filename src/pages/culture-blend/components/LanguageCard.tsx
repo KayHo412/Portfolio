@@ -49,30 +49,32 @@ const LanguageCard = ({ language }: LanguageCardProps) => {
         </div>
 
         {/* Back Side */}
-        <div className="absolute inset-0 backface-hidden rotate-y-180 bg-card rounded-xl border-2 border-secondary/30 p-6 overflow-y-auto neon-glow-secondary">
-          <div className="flex items-center justify-between mb-4">
-            <h4 className="text-lg font-orbitron font-bold text-secondary">Details</h4>
-            <Icon name="RotateCcw" size={20} className="text-accent" />
+        <div className="absolute inset-0 backface-hidden rotate-y-180 bg-card rounded-xl border-2 border-secondary/30 p-6 overflow-hidden neon-glow-secondary flex flex-col">
+          <div className="flex items-center justify-between mb-4 flex-shrink-0">
+            <h4 className="text-lg font-orbitron font-bold text-secondary truncate">Details</h4>
+            <Icon name="RotateCcw" size={20} className="text-accent flex-shrink-0 ml-2" />
           </div>
-          <p className="text-sm text-foreground mb-4 leading-relaxed">
-            {language.description}
-          </p>
-          {language.certifications && language.certifications.length > 0 && (
-            <div className="mt-4">
-              <h5 className="text-sm font-rajdhani font-semibold text-primary mb-2 flex items-center">
-                <Icon name="Award" size={16} className="mr-2" />
-                Certifications
-              </h5>
-              <ul className="space-y-2">
-                {language.certifications.map((cert, index) => (
-                  <li key={index} className="text-xs text-muted-foreground flex items-start">
-                    <Icon name="CheckCircle2" size={14} className="mr-2 mt-0.5 text-success flex-shrink-0" />
-                    <span>{cert}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <div className="overflow-y-auto flex-1">
+            <p className="text-sm text-foreground mb-4 leading-relaxed break-words">
+              {language.description}
+            </p>
+            {language.certifications && language.certifications.length > 0 && (
+              <div className="mt-4">
+                <h5 className="text-sm font-rajdhani font-semibold text-primary mb-2 flex items-center flex-shrink-0">
+                  <Icon name="Award" size={16} className="mr-2 flex-shrink-0" />
+                  <span className="truncate">Certifications</span>
+                </h5>
+                <ul className="space-y-2">
+                  {language.certifications.map((cert, index) => (
+                    <li key={index} className="text-xs text-muted-foreground flex items-start gap-2">
+                      <Icon name="CheckCircle2" size={14} className="text-success flex-shrink-0 mt-0.5" />
+                      <span className="break-words">{cert}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

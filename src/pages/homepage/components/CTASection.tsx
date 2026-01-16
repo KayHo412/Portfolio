@@ -9,73 +9,88 @@ interface CTASectionProps {
 
 const CTASection = ({ socialLinks }: CTASectionProps) => {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-      <div className="max-w-4xl mx-auto text-center">
-        <div className="mb-8">
-          <h2 className="text-4xl sm:text-5xl font-orbitron font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent text-shadow-glow">
-              Ready to Create Something Amazing?
+    <section className="py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80">
+      <div className="max-w-4xl mx-auto">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary rounded-full blur-3xl" />
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 text-center">
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <span className="gradient-text-primary">
+              Let's Build Something Exceptional
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Let's combine precision coding with creative innovation to build your next project
+
+          {/* Description */}
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+            I'm passionate about crafting elegant solutions that combine technical precision with creative excellence. Ready to collaborate?
           </p>
-        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <Link to="/the-lab">
-            <Button
-              size="xl"
-              iconName="Rocket"
-              iconPosition="right"
-              className="bg-cta hover:bg-cta/90 text-cta-foreground neon-glow-cta text-lg px-10 py-6"
-            >
-              Let's Cook Up Something Amazing
-            </Button>
-          </Link>
-
-          <Button
-            size="xl"
-            variant="outline"
-            iconName="Download"
-            iconPosition="left"
-            className="border-secondary text-secondary hover:bg-secondary/10 text-lg px-10 py-6"
-            onClick={() => {
-            const link = document.createElement('a');
-            link.href = '/public/first_resume.pdf';
-            link.download = 'first_resume.pdf';
-            link.click();
-  }}
-          >
-            Download My Recipe Book
-          </Button>
-        </div>
-
-        <div className="pt-8 border-t border-border">
-          <p className="text-sm text-muted-foreground mb-6">Connect with me on social media</p>
-          <div className="flex items-center justify-center gap-6">
-            {socialLinks.map((link) => (
-              <a
-                key={link.platform}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative w-14 h-14 rounded-full flex items-center justify-center border-2 border-border hover:border-primary transition-all duration-300"
-                style={{ backgroundColor: `${link.color}10` }}
-                aria-label={link.platform}
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <Link to="/about">
+              <Button
+                size="lg"
+                iconName="ArrowRight"
+                iconPosition="right"
+                className="bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/50 hover:shadow-xl"
               >
-                <Icon
-                  name={link.icon}
-                  size={24}
-                  className="transition-transform duration-300 group-hover:scale-110"
-                  style={{ color: link.color }}
-                />
-                <div
-                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                  style={{ backgroundColor: link.color }}
-                />
-              </a>
-            ))}
+                Explore My Work
+              </Button>
+            </Link>
+
+            <Button
+              size="lg"
+              variant="outline"
+              iconName="Download"
+              iconPosition="left"
+              className="border-primary/30 text-foreground hover:glass-dark"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/Portfolio/KhoaHo_CV.docx';
+                link.download = 'KhoaHo_CV.docx';
+                link.click();
+              }}
+            >
+              Download CV
+            </Button>
+          </div>
+
+          {/* Social Links */}
+          <div className="pt-12 border-t border-primary/10">
+            <p className="text-sm text-muted-foreground mb-8 font-medium">
+              Connect & Follow
+            </p>
+            <div className="flex items-center justify-center gap-4 sm:gap-6">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:shadow-lg transition-smooth border-0"
+                  aria-label={link.platform}
+                >
+                  <Icon
+                    name={link.icon}
+                    size={20}
+                    className="transition-transform duration-300 group-hover:scale-125"
+                    style={{ color: link.color }}
+                  />
+
+                  {/* Hover glow effect */}
+                  <div
+                    className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-md pointer-events-none"
+                    style={{ backgroundColor: link.color }}
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

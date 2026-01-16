@@ -89,11 +89,14 @@ module.exports = {
         'xl': 'var(--spacing-xl)',
       },
       boxShadow: {
-        'neon-primary': '0 0 20px rgba(15, 118, 110, 0.25)',
-        'neon-secondary': '0 0 20px rgba(3, 105, 161, 0.25)',
-        'neon-accent': '0 0 20px rgba(71, 85, 105, 0.15)',
-        'neon-cta': '0 0 20px rgba(2, 132, 199, 0.25)',
+        'glow-soft-primary': '0 0 30px rgba(99, 102, 241, 0.2)',
+        'glow-soft-secondary': '0 0 30px rgba(6, 182, 212, 0.2)',
+        'glow-soft-accent': '0 0 30px rgba(245, 158, 11, 0.2)',
+        'neon-primary': '0 0 20px rgba(99, 102, 241, 0.3) inset',
+        'neon-secondary': '0 0 20px rgba(6, 182, 212, 0.3) inset',
         'subtle': '0 4px 6px rgba(0, 0, 0, 0.15)',
+        'md-glass': '0 8px 32px rgba(0, 0, 0, 0.2)',
+        'lg-glass': '0 20px 60px rgba(0, 0, 0, 0.3)',
       },
       keyframes: {
         "accordion-down": {
