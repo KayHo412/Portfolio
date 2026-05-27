@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap');
+/* GAME UI STYLE - HIGH CONTRAST PIXEL AESTHETIC */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,69 +8,65 @@
 
 @layer base {
   :root {
-    /* Modern Refined Palette - Inspired by aura.build */
-    /* Primary - Warm Gradient Base */
-    --color-primary: #6366F1; /* Modern Indigo */
-    --color-primary-foreground: #FFFFFF; /* pure white */
+    /* === GAME UI PALETTE === */
+    /* High-contrast near-black background */
+    --color-background: #0a0a0f;
+    --color-foreground: #e8e8e8;
 
-    /* Secondary - Complementary Cool */
-    --color-secondary: #06B6D4; /* Cyan - modern & fresh */
-    --color-secondary-foreground: #FFFFFF; /* white */
+    /* Electric neon accent - single focus color */
+    --color-primary: #00ff88;
+    --color-primary-foreground: #0a0a0f;
 
-    /* Accent - Soft Warm */
-    --color-accent: #F59E0B; /* Amber - warm accent */
-    --color-accent-foreground: #FFFFFF; /* white */
+    /* Secondary accent for visual hierarchy */
+    --color-secondary: #00ccff;
+    --color-secondary-foreground: #0a0a0f;
 
-    /* Background Colors - Modern Dark Mode */
-    --color-background: #0F172A; /* Deep slate (kept dark) */
-    --color-foreground: #F8FAFC; /* Almost white - excellent contrast */
+    /* Tertiary for warnings/status */
+    --color-accent: #ff00ff;
+    --color-accent-foreground: #0a0a0f;
 
-    /* Surface Colors - Glassmorphism Ready */
-    --color-card: #1E293B; /* Slate-900 with transparency for glass effect */
-    --color-card-foreground: #F8FAFC; /* Near white text */
-    --color-popover: #1E293B; /* Same as card for consistency */
-    --color-popover-foreground: #F8FAFC; /* Near white text */
+    /* Dark surface for cards/panels */
+    --color-card: #1a1a1f;
+    --color-card-foreground: #e8e8e8;
 
-    /* Muted Colors */
-    --color-muted: #64748B; /* Slate-500 - softer than before */
-    --color-muted-foreground: #CBD5E1; /* Slate-300 - better contrast */
+    /* Muted grays for secondary text */
+    --color-muted: #666666;
+    --color-muted-foreground: #999999;
 
-    /* Border & Input - Softer appearance */
-    --color-border: #334155; /* Slate-700 subtle borders */
-    --color-input: #334155; /* Slate-700 input backgrounds */
-    --color-ring: #6366F1; /* Primary indigo for focus states */
+    /* Game-safe borders - hard pixel style */
+    --color-border: #00ff88;
+    --color-input: #1a1a1f;
+    --color-ring: #00ff88;
 
-    /* Status Colors - Refined Palette */
-    --color-success: #10B981; /* Emerald - more vibrant */
-    --color-success-foreground: #FFFFFF; /* white */
-    --color-warning: #F59E0B; /* Amber - warm and noticeable */
-    --color-warning-foreground: #FFFFFF; /* white */
-    --color-error: #EF4444; /* Red - more balanced */
-    --color-error-foreground: #FFFFFF; /* white */
-    --color-destructive: #EF4444; /* Red */
-    --color-destructive-foreground: #FFFFFF; /* white */
+    /* Status colors */
+    --color-success: #00ff88;
+    --color-success-foreground: #0a0a0f;
+    --color-warning: #ffaa00;
+    --color-warning-foreground: #0a0a0f;
+    --color-error: #ff0055;
+    --color-error-foreground: #e8e8e8;
+    --color-destructive: #ff0055;
+    --color-destructive-foreground: #e8e8e8;
 
-    /* CTA Color - Premium Gradient Candidate */
-    --color-cta: #6366F1; /* Indigo - premium feel */
-    --color-cta-foreground: #FFFFFF; /* white */
+    /* CTA and trust */
+    --color-cta: #00ff88;
+    --color-cta-foreground: #0a0a0f;
+    --color-trust: #00ccff;
+    --color-trust-foreground: #0a0a0f;
 
-    /* Trust Builder - Cool & Reliable */
-    --color-trust: #06B6D4; /* Cyan - tech-forward */
-    --color-trust-foreground: #FFFFFF; /* white */
+    /* Spacing - uniform grid */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.8rem;
+    --spacing-md: 1.2rem;
+    --spacing-lg: 1.6rem;
+    --spacing-xl: 2.4rem;
 
-    /* Spacing - Generous & Rhythmic */
-    --spacing-xs: 0.5rem; /* 8px */
-    --spacing-sm: 0.8125rem; /* 13px */
-    --spacing-md: 1.3125rem; /* 21px */
-    --spacing-lg: 2.125rem; /* 34px */
-    --spacing-xl: 3.4375rem; /* 55px */
-
-    /* Border Radius - Modern Rounded Corners */
-    --radius-sm: 0.375rem; /* 6px */
-    --radius-md: 0.5rem; /* 8px */
-    --radius-lg: 0.75rem; /* 12px */
-    --radius-xl: 1rem; /* 16px */
-    --radius-2xl: 1.25rem; /* 20px - new for modern look */
+    /* Border Radius - ZERO (pixel-perfect) */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-2xl: 0;
   }
 
   * {
@@ -78,153 +75,219 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Geist', system-ui, -apple-system, sans-serif;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-weight: 400;
-    letter-spacing: -0.01em;
-    line-height: 1.6;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    /* CRT scanline overlay */
+    position: relative;
+    background-image:
+      radial-gradient(circle at top, rgba(0, 255, 136, 0.08), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(0, 204, 255, 0.06), transparent 30%),
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: auto, auto, 24px 24px, 24px 24px;
+    background-position: center, center, center, center;
   }
 
-  /* Enhanced Typography Hierarchy - aura.build inspired */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 45%, rgba(0, 0, 0, 0.25) 100%);
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  /* Game-style headings with Press Start 2P */
   h1 {
-    font-family: 'Geist', system-ui, -apple-system, sans-serif;
-    @apply text-5xl md:text-6xl font-bold tracking-tight mb-4;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    @apply text-2xl md:text-3xl font-bold tracking-widest mb-4;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
 
   h2 {
-    font-family: 'Geist', system-ui, -apple-system, sans-serif;
-    @apply text-4xl md:text-5xl font-bold tracking-tight mb-4;
-    letter-spacing: -0.02em;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    @apply text-xl md:text-2xl font-bold tracking-widest mb-3;
+    letter-spacing: 0.1em;
     line-height: 1.2;
+    text-transform: uppercase;
   }
 
   h3 {
-    font-family: 'Geist', system-ui, -apple-system, sans-serif;
-    @apply text-2xl md:text-3xl font-bold tracking-tight mb-3;
-    letter-spacing: -0.015em;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    @apply text-lg font-bold tracking-wider mb-2;
+    letter-spacing: 0.08em;
     line-height: 1.3;
+    text-transform: uppercase;
   }
 
   h4, h5, h6 {
-    font-family: 'Geist', system-ui, -apple-system, sans-serif;
-    @apply font-bold tracking-tight;
-    letter-spacing: -0.01em;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    @apply font-bold tracking-wide;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   button {
-    font-family: 'Geist', system-ui, -apple-system, sans-serif;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   code, pre {
-    font-family: 'Geist Mono', 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-weight: 400;
+    letter-spacing: 0.05em;
   }
 }
 
 @layer utilities {
-  /* Glassmorphism Effects - Key aura.build Feature */
-  .glass {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  /* === PIXEL BORDER UTILITIES === */
+  .pixel-border-2 {
+    border: 2px solid var(--color-border);
   }
 
-  .glass-dark {
-    @apply backdrop-blur-xl bg-slate-950/50 border border-slate-700/50;
+  .pixel-border-3 {
+    border: 3px solid var(--color-border);
   }
 
-  .glass-card {
-    @apply backdrop-blur-lg bg-slate-900/40 border border-slate-700/30;
+  .pixel-border-4 {
+    border: 4px solid var(--color-border);
   }
 
-  /* Premium Gradient Overlays */
-  .gradient-primary {
-    @apply bg-gradient-to-br from-indigo-500/20 via-transparent to-cyan-500/10;
+  .pixel-border-top-2 {
+    border-top: 2px solid var(--color-border);
   }
 
-  .gradient-secondary {
-    @apply bg-gradient-to-tr from-cyan-500/15 via-transparent to-amber-500/10;
+  .pixel-border-accent {
+    border: 2px solid var(--color-accent);
   }
 
-  .gradient-text-primary {
-    @apply bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent;
+  .pixel-border-secondary {
+    border: 2px solid var(--color-secondary);
   }
 
-  .gradient-text-secondary {
-    @apply bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent;
+  /* === NEON GLOW EFFECTS === */
+  .neon-primary {
+    text-shadow: 0 0 4px rgba(0, 224, 122, 0.45);
+    color: var(--color-primary);
   }
 
-  /* Soft Glow Effects - Subtle Animation */
-  .glow-soft-primary {
-    @apply shadow-lg shadow-indigo-500/20;
+  .neon-secondary {
+    text-shadow: 0 0 4px rgba(0, 204, 255, 0.35);
+    color: var(--color-secondary);
   }
 
-  .glow-soft-secondary {
-    @apply shadow-lg shadow-cyan-500/20;
+  .neon-accent {
+    text-shadow: 0 0 4px rgba(255, 0, 255, 0.35);
+    color: var(--color-accent);
   }
 
-  .glow-soft-accent {
-    @apply shadow-lg shadow-amber-500/20;
+  /* === GAME UI BOXES === */
+  .game-box {
+    @apply pixel-border-2 bg-card text-foreground;
   }
 
-  /* Modern Neon Glows - Refined Version */
-  .neon-glow-primary {
-    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3)) drop-shadow(0 0 40px rgba(99, 102, 241, 0.15));
+  .game-box-primary {
+    @apply pixel-border-2 bg-card text-foreground border-primary;
   }
 
-  .neon-glow-secondary {
-    filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.3)) drop-shadow(0 0 40px rgba(6, 182, 212, 0.15));
+  .game-box-accent {
+    @apply pixel-border-2 bg-card text-foreground border-accent;
   }
 
-  .neon-glow-accent {
-    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3)) drop-shadow(0 0 40px rgba(245, 158, 11, 0.15));
+  /* === PIXEL BUTTONS === */
+  .pixel-btn {
+    @apply px-4 py-2 pixel-border-2 bg-card text-foreground uppercase font-bold tracking-wider transition-all duration-100;
+    font-family: 'JetBrains Mono', monospace;
   }
 
-  /* Subtle Text Shadow */
-  .text-shadow-glow {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  .pixel-btn:hover {
+    @apply bg-primary text-primary-foreground;
   }
 
-  /* Smooth Transitions for Interactive Elements */
-  .transition-smooth {
-    @apply transition-all duration-300 ease-out;
+  .pixel-btn-primary {
+    @apply pixel-btn bg-primary text-primary-foreground border-primary;
   }
 
-  .transition-smooth-lg {
-    @apply transition-all duration-500 ease-out;
+  .pixel-btn-primary:hover {
+    @apply bg-background text-primary border-primary;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
   }
 
-  /* Modern Blur Effects */
-  .blur-subtle {
-    backdrop-filter: blur(8px);
+  .pixel-btn-accent {
+    @apply pixel-btn bg-accent text-accent-foreground border-accent;
   }
 
-  .blur-medium {
-    backdrop-filter: blur(12px);
+  /* === FLICKER EFFECT (hover on cards) === */
+  @keyframes flicker {
+    0%, 100% { border-color: var(--color-border); }
+    50% { border-color: var(--color-primary); }
   }
 
-  .blur-heavy {
-    backdrop-filter: blur(20px);
+  .flicker-hover:hover {
+    animation: flicker 0.6s infinite;
   }
 
-  /* Bounce Playful Animation - Kept from original */
-  .bounce-playful {
-    animation: bounce-playful 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* === BLINKING CURSOR === */
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
   }
 
-  @keyframes bounce-playful {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
+  .cursor-blink {
+    animation: blink 1s infinite;
   }
 
-  /* Slide In Animations */
+  /* === CRT SCANLINES === */
+  .crt-overlay {
+    position: relative;
+  }
+
+  .crt-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    pointer-events: none;
+  }
+
+  /* === SLIDE ANIMATIONS === */
   .slide-in-left {
-    animation: slide-in-left 0.4s ease-out;
+    animation: slide-in-left 0.3s ease-out;
   }
 
   @keyframes slide-in-left {
@@ -238,13 +301,28 @@
     }
   }
 
-  .fade-in-up {
-    animation: fade-in-up 0.5s ease-out;
+  .slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
   }
 
-  @keyframes fade-in-up {
+  @keyframes slide-in-right {
     from {
-      transform: translateY(20px);
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
       opacity: 0;
     }
     to {
@@ -253,38 +331,83 @@
     }
   }
 
-  /* Modern Float Animation */
-  .float-subtle {
-    animation: float-subtle 3s ease-in-out infinite;
+  /* === FADE ANIMATIONS === */
+  .fade-in {
+    animation: fade-in 0.3s ease-out;
   }
 
-  @keyframes float-subtle {
-    0%, 100% {
-      transform: translateY(0px);
+  @keyframes fade-in {
+    from {
+      opacity: 0;
     }
-    50% {
-      transform: translateY(-8px);
+    to {
+      opacity: 1;
     }
   }
 
-  /* Shimmer Effect for Loading States */
-  .shimmer {
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
+  /* === PIXEL FONT CLASS === */
+  .font-pixel {
+    font-family: 'Press Start 2P', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  @keyframes shimmer {
-    0% {
-      background-position: -200% 0;
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* === HEALTH BAR STYLING === */
+  .health-bar-bg {
+    @apply w-full h-2 game-box;
+    background-color: var(--color-card);
+  }
+
+  .health-bar-fill {
+    @apply h-full transition-all duration-300;
+    background-color: var(--color-primary);
+  }
+
+  /* === STATUS TEXT === */
+  .status-on {
+    color: var(--color-primary);
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+  }
+
+  .status-alert {
+    color: var(--color-warning);
+    text-shadow: 0 0 8px rgba(255, 170, 0, 0.6);
+  }
+
+  .status-error {
+    color: var(--color-error);
+    text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+  }
+
+  /* === FLIP CARD ANIMATION === */
+  .perspective {
+    perspective: 1000px;
+  }
+
+  @supports (transform-style: preserve-3d) {
+    .flip-container {
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-in-out;
     }
-    100% {
-      background-position: 200% 0;
+
+    .flip-container.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
     }
   }
 }

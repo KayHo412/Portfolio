@@ -17,7 +17,7 @@ const FeatureCards = ({ features }: FeatureCardsProps) => {
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Navigate through carefully crafted sections that showcase my journey, expertise, and creative endeavors
+            Navigate through carefully crafted sections that showcase my journey, projects, and learning experience
           </p>
         </div>
 

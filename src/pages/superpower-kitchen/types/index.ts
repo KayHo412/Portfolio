@@ -6,7 +6,6 @@ export interface Skill {
   icon: string;
   description: string;
   yearsOfExperience: number;
-  projects: number;
   metaphor: {
     type: 'cooking' | 'badminton';
     item: string;

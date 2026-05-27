@@ -33,7 +33,7 @@ const SkillsShowcase = ({ skills }: SkillsShowcaseProps) => {
             </span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Mastery across frontend, backend, and modern development tools
+            Strong skills across frontend, backend, and modern development tools
           </p>
         </div>
 

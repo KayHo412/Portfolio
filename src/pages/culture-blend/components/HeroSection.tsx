@@ -17,7 +17,7 @@ const HeroSection = () => {
 
         <p className="text-lg md:text-xl text-foreground mb-6 max-w-3xl leading-relaxed">
           Where Finnish precision meets global perspective. A journey through multicultural experiences,
-          language mastery, and cross-cultural collaboration that shapes innovative solutions.
+          language skills, and cross-cultural collaboration that shapes innovative solutions.
         </p>
 
         <div className="flex flex-wrap gap-4">
