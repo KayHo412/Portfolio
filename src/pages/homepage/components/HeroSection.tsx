@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import BulletHell from './BulletHell';
 import Icon from '../../../components/AppIcon';
 import type { HeroSection as HeroSectionType } from '../types';
 
@@ -31,6 +32,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
       }
     };
   }, []);
+
+  // Typing animation removed per request — show static title
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -84,19 +87,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
           {data.description}
         </p>
 
-        {/* Feature badges */}
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <div className="glass-card px-4 py-2 rounded-lg inline-flex items-center gap-2 hover:glass-dark transition-smooth">
-            <Icon name="Code2" size={18} className="text-primary" />
-            <span className="text-sm font-medium">Full-Stack Developer</span>
-          </div>
-          <div className="glass-card px-4 py-2 rounded-lg inline-flex items-center gap-2 hover:glass-dark transition-smooth">
-            <Icon name="Trophy" size={18} className="text-amber-400" />
-            <span className="text-sm font-medium">Scholarship Winner</span>
-          </div>
-          <div className="glass-card px-4 py-2 rounded-lg inline-flex items-center gap-2 hover:glass-dark transition-smooth">
-            <Icon name="Globe" size={18} className="text-secondary" />
-            <span className="text-sm font-medium">Multicultural</span>
+        {/* Mini bullet-hell game */}
+        <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <div className="max-w-3xl mx-auto">
+            <div className="mb-3 text-center font-mono text-sm text-ink-dim">Move your mouse to spawn bullets; they fly toward the dot. Score increases when bullets hit the dot.</div>
+            <div className="px-2">
+              <BulletHell />
+            </div>
           </div>
         </div>
       </div>

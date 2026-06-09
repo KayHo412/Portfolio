@@ -1,21 +1,5 @@
 @import './tailwind.css';
 
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.transform-style-3d {
-  transform-style: preserve-3d;
-}
-
-.backface-hidden {
-  backface-visibility: hidden;
-}
-
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -42,4 +26,8 @@
 
 .animate-slide-in-right {
   animation: slide-in-right 0.3s ease-out;
+}
+
+html {
+  scroll-behavior: smooth;
 }

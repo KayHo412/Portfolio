@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../components/ui/Button';
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
@@ -14,37 +13,30 @@ const NotFound: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4">
-      <div className="text-center max-w-md">
-        <div className="flex justify-center mb-6">
-          <div className="relative">
-            <h1 className="text-9xl font-bold text-primary opacity-20">404</h1>
-          </div>
+    <div className="min-h-screen bg-base px-4 py-16 text-ink">
+      <div className="mx-auto flex max-w-xl flex-col gap-8 border border-border bg-surface p-8 text-left">
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">404</p>
+        <div className="space-y-3">
+          <h1 className="text-[clamp(2.5rem,8vw,64px)] leading-[0.95] text-ink">Page Not Found</h1>
+          <p className="max-w-lg text-[13px] leading-[1.75] text-ink-dim">
+            Oopsie woopsie, I didn't make an endpoint for this yet, might did it in the future. Let's get you back!
+          </p>
         </div>
 
-        <h2 className="text-2xl font-medium text-onBackground mb-2">Page Not Found</h2>
-       <p className="text-onBackground/70 mb-8">
-  Oopsie woopsie, I didn't make an endpoint for this yet, might did it in the future. Let's get you back!
-</p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            variant="default"
-            iconName="ArrowLeft"
-            iconPosition="left"
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <button
             onClick={handleGoBack}
+            className="border border-border-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
           >
             Go Back
-          </Button>
+          </button>
 
-          <Button
-            variant="outline"
-            iconName="Home"
-            iconPosition="left"
+          <button
             onClick={handleGoHome}
+            className="border border-border-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
           >
             Back to Home
-          </Button>
+          </button>
         </div>
       </div>
     </div>

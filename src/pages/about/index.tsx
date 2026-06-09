@@ -1,10 +1,5 @@
 import { Helmet } from 'react-helmet';
-import QuestCard from '../../components/game-ui/QuestCard';
-import PixelBox from '../../components/game-ui/PixelBox';
-import PixelDivider from '../../components/game-ui/PixelDivider';
-import PixelButton from '../../components/game-ui/PixelButton';
-import BadgeLabel from '../../components/game-ui/BadgeLabel';
-import HealthBar from '../../components/game-ui/HealthBar';
+import Image from '../../components/AppImage';
 import {
   PersonalInfo,
   Experience,
@@ -12,6 +7,14 @@ import {
   Value,
   SocialLink } from
 './types';
+
+const SectionDivider = ({ label }: { label: string }) => (
+  <div className="flex items-center gap-4">
+    <div className="h-px flex-1 bg-border" />
+    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">{label}</span>
+    <div className="h-px flex-1 bg-border" />
+  </div>
+);
 
 const About = () => {
   const personalInfo: PersonalInfo = {
@@ -26,7 +29,7 @@ const About = () => {
     { name: "Finnish", proficiency: "Intermediate", level: 60, flag: "🇫🇮", alt: "Finnish flag" }],
 
     bio: "I'm a software engineering student at Tampere University of Applied Sciences with experience in web development, Unity, C#, customer-facing work, and international collaboration. I value practical problem-solving, clean implementation, and steady learning through real projects.",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQE9xIJf1NrTDw/profile-displayphoto-crop_800_800/B4DZiskihcHwAI-/0/1755241922067?e=1766620800&v=beta&t=ZqcyyXcPtwsAhqG1kM1QBYh-Y0RbqD4PL8N3vEykakg",
+    image: "https://media.licdn.com/dms/image/v2/D4D03AQG-NsDcWWydlg/profile-displayphoto-crop_800_800/B4DZ5loAkdGQAM-/0/1779821450616?e=1782345600&v=beta&t=bA8q9Nj7VjpEFwyNSL_TOSfe4SwdT4LCUStpwk1bHIU",
     alt: "Portrait of Khoa Ho - Full-Stack Developer and Software Engineering Student"
   };
 
@@ -138,171 +141,162 @@ const About = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
-        <main className="max-w-5xl mx-auto px-4 md:px-8 py-12 space-y-12">
-          {/* === PROFILE === */}
-          <PixelBox variant="primary" borderWidth={4} title="ABOUT">
-            <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-              <div className="flex-shrink-0">
-                <img
+      <div className="min-h-screen bg-base text-ink">
+        <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-14 md:px-8">
+          <section className="space-y-8">
+            <div className="grid gap-6 border border-border bg-surface p-6 md:grid-cols-2">
+              <div className="w-full md:w-[240px]">
+                <Image
                   src={personalInfo.image}
                   alt={personalInfo.alt}
-                  className="w-40 h-40 md:w-48 md:h-48 pixel-border-3 border-primary"
+                  className="block h-48 md:h-[240px] w-full object-cover"
                 />
               </div>
-              <div className="flex-1 space-y-3">
-                <div>
-                  <h1 className="font-pixel text-2xl md:text-3xl neon-primary mb-2">
-                    {personalInfo.name}
-                  </h1>
-                  <p className="font-mono text-sm text-secondary font-bold">
-                    [{personalInfo.title.toUpperCase()}]
-                  </p>
-                </div>
-                <p className="font-mono text-xs md:text-sm text-muted-foreground leading-relaxed">
+              <div className="space-y-4">
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber">
+                  {personalInfo.title}
+                </p>
+                <h1 className="text-[clamp(2rem,6vw,48px)] md:text-[clamp(2.75rem,6vw,64px)] leading-[0.95] tracking-[-0.03em] text-ink">
+                  {personalInfo.name}
+                </h1>
+                <p className="max-w-2xl text-[15px] leading-[1.75] text-ink-dim">
                   {personalInfo.bio}
                 </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <BadgeLabel text={personalInfo.location} variant="secondary" />
-                  <BadgeLabel text={personalInfo.nationality} variant="accent" />
+                <div className="flex flex-wrap gap-2 pt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-dim">
+                  <span className="border border-border-strong px-3 py-1 text-amber">{personalInfo.location}</span>
+                  <span className="border border-border px-3 py-1">{personalInfo.nationality}</span>
                 </div>
               </div>
             </div>
-          </PixelBox>
+          </section>
 
-          {/* === LANGUAGE PROFICIENCY === */}
-          <PixelDivider variant="primary" />
+          <SectionDivider label="languages" />
 
-          <PixelBox variant="secondary" borderWidth={3} title="LANGUAGE MATRIX">
-            <div className="space-y-4">
+          <section className="space-y-4 border border-border bg-surface p-6">
+              <div className="grid gap-4">
               {personalInfo.languages.map((lang) => (
-                <HealthBar
-                  key={lang.name}
-                  label={`${lang.flag} ${lang.name}`}
-                  current={lang.level}
-                  max={100}
-                  barColor={lang.level === 100 ? 'primary' : lang.level >= 90 ? 'secondary' : 'accent'}
-                  showPercentage={false}
-                />
-              ))}
-            </div>
-          </PixelBox>
-
-          {/* === EXPERIENCE === */}
-          <PixelDivider variant="secondary" />
-
-          <div className="space-y-4">
-            <h2 className="font-pixel text-xl md:text-2xl text-primary neon-primary">
-              ▶ EXPERIENCE
-            </h2>
-            <div className="space-y-4">
-              {experiences.map((exp) => (
-                <QuestCard
-                  key={exp.id}
-                  title={exp.title}
-                  company={exp.organization}
-                  period={exp.period}
-                  description={exp.description}
-                  achievements={exp.highlights}
-                  isInProgress={exp.id === 'exp1'}
-                  icon={exp.icon}
-                  experienceId={exp.id}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* === INTERESTS === */}
-          <PixelDivider variant="accent" />
-
-          <PixelBox variant="accent" borderWidth={3} title="INTERESTS">
-            <div className="space-y-6">
-              {hobbies.map((hobby) => (
-                <div key={hobby.id} className="pixel-border-2 border-accent p-4 space-y-3">
-                  <h3 className="font-pixel text-sm md:text-base text-accent neon-accent">
-                    {hobby.name.toUpperCase()}
-                  </h3>
-                  <p className="text-xs md:text-sm text-foreground font-mono">
-                    {hobby.description}
-                  </p>
-                  {hobby.image && (
-                    <img
-                      src={hobby.image}
-                      alt={hobby.alt}
-                      className="w-full h-32 md:h-48 object-cover pixel-border-2 border-accent opacity-75"
-                    />
-                  )}
-                  {hobby.skills.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {hobby.skills.map((skill) => (
-                        <BadgeLabel key={skill} text={skill} variant="secondary" />
-                      ))}
-                    </div>
-                  )}
+                <div key={lang.name} className="space-y-2">
+                  <div className="flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.08em]">
+                    <span className="text-ink">{lang.flag} {lang.name}</span>
+                    <span className="text-ink-dim">{lang.proficiency}</span>
+                  </div>
+                  <div className="h-[2px] bg-border">
+                    <div className="h-full bg-amber" style={{ width: `${lang.level}%` }} />
+                  </div>
                 </div>
               ))}
             </div>
-          </PixelBox>
+          </section>
 
-          {/* === VALUES === */}
-          <PixelDivider variant="primary" />
+          <SectionDivider label="experience" />
 
-          <div>
-            <h2 className="font-pixel text-xl md:text-2xl text-primary neon-primary mb-4">
-              ▶ VALUES
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {values.map((value) => (
-                <PixelBox key={value.id} variant="primary" borderWidth={2}>
-                  <h3 className="font-pixel text-xs md:text-sm text-secondary mb-2">
-                    {value.title.toUpperCase()}
-                  </h3>
-                  <p className="text-xs md:text-sm text-foreground font-mono">
-                    {value.description}
-                  </p>
-                </PixelBox>
-              ))}
-            </div>
-          </div>
+          <section className="space-y-4">
+            {experiences.map((exp) => (
+              <article key={exp.id} className="border border-border bg-surface p-6">
+                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                  <div className="space-y-2">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">
+                      {exp.period}
+                    </p>
+                    <h2 className="text-[20px] md:text-[26px] text-ink">{exp.title}</h2>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-amber">
+                      {exp.organization}
+                    </p>
+                  </div>
+                  {exp.id === 'exp1' && (
+                    <span className="border border-border-strong px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-amber">
+                      IN PROGRESS
+                    </span>
+                  )}
+                </div>
+                <p className="mt-4 max-w-3xl text-[13px] leading-[1.75] text-ink-dim">
+                  {exp.description}
+                </p>
+                <div className="mt-5 space-y-2 border-l border-amber pl-4">
+                  {exp.highlights.map((highlight) => (
+                    <p key={highlight} className="font-mono text-[13px] leading-[1.7] text-ink-dim">
+                      {highlight}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </section>
 
-          {/* === CONTACT === */}
-          <PixelDivider variant="secondary" />
+          <SectionDivider label="interests" />
 
-          <PixelBox variant="secondary" borderWidth={4} title="CONTACT">
-            <div className="space-y-4">
-              <p className="text-xs md:text-sm font-mono text-foreground">
-                Interested in collaboration, internships, or full-time opportunities? Reach out through any of the channels below:
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                {socialLinks.map((link) => (
-                  <PixelButton
-                    key={link.platform}
-                    asLink
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="primary"
-                    className="flex-1 text-center"
-                  >
-                    [{link.platform.toUpperCase()}]
-                  </PixelButton>
-                ))}
-                <PixelButton
-                  asLink
-                  href="https://kaho412.itch.io/"
+          <section className="grid gap-6 md:grid-cols-2">
+            {hobbies.map((hobby) => (
+              <article key={hobby.id} className="border border-border bg-surface p-6">
+                <h2 className="text-[20px] md:text-[28px] text-ink">{hobby.name}</h2>
+                <p className="mt-2 text-[13px] leading-[1.75] text-ink-dim">{hobby.description}</p>
+                {hobby.image && (
+                  <Image
+                    src={hobby.image}
+                    alt={hobby.alt}
+                    className="mt-4 block h-40 md:h-48 w-full object-cover"
+                  />
+                )}
+                <div className="mt-4 flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-dim">
+                  {hobby.skills.map((skill) => (
+                    <span key={skill} className="border border-border px-3 py-1">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <SectionDivider label="values" />
+
+          <section className="grid gap-4 md:grid-cols-2">
+            {values.map((value) => (
+              <article key={value.id} className="border border-border bg-surface p-6">
+                <h2 className="text-[18px] md:text-[22px] text-ink">{value.title}</h2>
+                <p className="mt-3 text-[13px] leading-[1.75] text-ink-dim">{value.description}</p>
+              </article>
+            ))}
+          </section>
+
+          <SectionDivider label="contact" />
+
+          <section className="border border-border bg-surface p-6 space-y-4">
+            <p className="max-w-2xl text-[13px] leading-[1.75] text-ink-dim">
+              Interested in collaboration, internships, or full-time opportunities? Reach out through any of the channels below:
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.platform}
+                  href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variant="accent"
-                  className="flex-1 text-center"
+                  className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
                 >
-                  [ITCH.IO]
-                </PixelButton>
-              </div>
-              <div className="pt-2 border-t-2 border-border">
-                <PixelButton asLink href="https://drive.google.com/uc?export=download&id=1Pudg10VOAYvQmUmeDH2kdqurinyyiRwT" target="_blank" rel="noopener noreferrer" variant="secondary" iconName="Download" className="w-full text-center">DOWNLOAD CV</PixelButton>
-              </div>
+                  {link.platform}
+                </a>
+              ))}
+              <a
+                href="https://kaho412.itch.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-amber transition-colors hover:bg-surface-2"
+              >
+                Itch.io
+              </a>
             </div>
-          </PixelBox>
+            <div className="border-t border-border pt-4">
+              <a
+                href="https://drive.google.com/uc?export=download&id=1Pudg10VOAYvQmUmeDH2kdqurinyyiRwT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex border border-border-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
+              >
+                Download CV
+              </a>
+            </div>
+          </section>
         </main>
       </div>
     </>);

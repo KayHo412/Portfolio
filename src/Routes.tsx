@@ -4,11 +4,13 @@ import ScrollToTop from "./components/ScrollToTop";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Layout from "./components/Layout";
 import NotFound from "./pages/NotFound";
+import { ThemeProvider } from './context/ThemeContext';
 
 // Lazy load route components for better performance
 const CultureBlend = lazy(() => import('./pages/culture-blend'));
 const SuperpowerKitchen = lazy(() => import('./pages/superpower-kitchen'));
 const About = lazy(() => import('./pages/about'));
+const Contact = lazy(() => import('./pages/contact'));
 const Homepage = lazy(() => import('./pages/homepage'));
 
 // Loading fallback component
@@ -24,20 +26,23 @@ const RouteLoadingFallback: React.FC = () => (
 const Routes: React.FC = () => {
   return (
     <BrowserRouter>
-      <ErrorBoundary>
-        <ScrollToTop />
-        <Layout>
-          <Suspense fallback={<RouteLoadingFallback />}>
-            <RouterRoutes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/culture-blend" element={<CultureBlend />} />
-              <Route path="/superpower-kitchen" element={<SuperpowerKitchen />} />
-              <Route path="/about" element={<About />} />
-              <Route path="*" element={<NotFound />} />
-            </RouterRoutes>
-          </Suspense>
-        </Layout>
-      </ErrorBoundary>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <ScrollToTop />
+          <Layout>
+            <Suspense fallback={<RouteLoadingFallback />}>
+              <RouterRoutes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/culture-blend" element={<CultureBlend />} />
+                <Route path="/superpower-kitchen" element={<SuperpowerKitchen />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </RouterRoutes>
+            </Suspense>
+          </Layout>
+        </ErrorBoundary>
+      </ThemeProvider>
     </BrowserRouter>
   );
 };

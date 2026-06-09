@@ -1,10 +1,15 @@
 import { Helmet } from 'react-helmet';
-import HealthBar from '../../components/game-ui/HealthBar';
-import PixelBox from '../../components/game-ui/PixelBox';
-import PixelDivider from '../../components/game-ui/PixelDivider';
-import BadgeLabel from '../../components/game-ui/BadgeLabel';
-import PixelButton from '../../components/game-ui/PixelButton';
+import { Link } from 'react-router-dom';
+import Image from '../../components/AppImage';
 import { Language, TimelineEvent, CulturalCompetency } from './types';
+
+const SectionDivider = ({ label }: { label: string }) => (
+  <div className="flex items-center gap-4">
+    <div className="h-px flex-1 bg-border" />
+    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">{label}</span>
+    <div className="h-px flex-1 bg-border" />
+  </div>
+);
 
 const CultureBlend = () => {
   const languages: Language[] = [
@@ -64,125 +69,115 @@ const CultureBlend = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
-        <main className="max-w-5xl mx-auto px-4 md:px-8 py-12 space-y-12">
-          {/* === HEADER === */}
-          <PixelBox variant="primary" borderWidth={4} title="CULTURE & LANGUAGE">
-            <p className="text-xs md:text-sm font-mono text-foreground">
+      <div className="min-h-screen bg-base text-ink">
+        <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-14 md:px-8">
+          <section className="space-y-4 border border-border bg-surface p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">
+              CULTURE &amp; LANGUAGE
+            </p>
+            <p className="max-w-2xl text-[13px] leading-[1.75] text-ink-dim">
               International background combining Vietnamese heritage, Nordic experience, and professional communication.
             </p>
-          </PixelBox>
+          </section>
 
-          {/* === LANGUAGE MATRIX === */}
-          <PixelDivider variant="primary" />
+          <SectionDivider label="languages" />
 
-          <PixelBox variant="secondary" borderWidth={3} title="LANGUAGE PROFICIENCY">
-            <div className="space-y-4">
-              {languages.map((lang) => (
-                <div key={lang.id} className="space-y-2 pb-4 border-b-2 border-border last:border-b-0 last:pb-0">
-                  <HealthBar
-                    label={lang.name}
-                    current={lang.proficiency}
-                    max={100}
-                    barColor={lang.proficiency === 100 ? 'primary' : lang.proficiency >= 90 ? 'secondary' : 'accent'}
-                    showPercentage={false}
-                  />
-                  <p className="text-xs text-foreground font-mono">{lang.description}</p>
+          <section className="grid gap-4 md:grid-cols-3">
+            {languages.map((lang) => (
+              <article key={lang.id} className="border border-border bg-surface p-6">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-4">
+                    <h2 className="text-[22px] text-ink">{lang.name}</h2>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-ink-dim">{lang.level}</p>
+                  </div>
+                  <div className="h-[2px] bg-border">
+                    <div className="h-full bg-amber" style={{ width: `${lang.proficiency}%` }} />
+                  </div>
+                  <p className="text-[13px] leading-[1.75] text-ink-dim">{lang.description}</p>
                   {lang.certifications && lang.certifications.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-dim">
                       {lang.certifications.map((cert) => (
-                        <BadgeLabel key={cert} text={cert} variant="primary" />
+                        <span key={cert} className="border border-border px-3 py-1">
+                          {cert}
+                        </span>
                       ))}
                     </div>
                   )}
                 </div>
-              ))}
-            </div>
-          </PixelBox>
-
-          {/* === TIMELINE === */}
-          <PixelDivider variant="secondary" />
-
-          <PixelBox variant="accent" borderWidth={3} title="INTERNATIONAL EXPERIENCE">
-            <div className="space-y-3">
-              {timelineEvents.map((event) => (
-                <div key={event.id} className="pixel-border-2 border-accent p-3 space-y-2">
-                  <div className="flex justify-between items-start gap-2">
-                    <div className="flex-1">
-                      <h3 className="font-pixel text-xs text-accent neon-accent">
-                        [{event.year}] {event.title.toUpperCase()}
-                      </h3>
-                      <p className="text-xs text-muted-foreground font-mono">
-                        LOCATION: {event.location}
-                      </p>
-                    </div>
-                    <BadgeLabel text={event.type.toUpperCase()} variant="secondary" />
-                  </div>
-                  <p className="text-xs text-foreground font-mono leading-relaxed">{event.description}</p>
-                  {event.image && (
-                    <img src={event.image} alt={event.alt} className="w-full h-24 object-cover pixel-border-2 border-accent opacity-75" />
-                  )}
-                </div>
-              ))}
-            </div>
-          </PixelBox>
-
-          {/* === COMPETENCIES === */}
-          <PixelDivider variant="accent" />
-
-          <div className="space-y-3">
-            <h2 className="font-pixel text-xl text-secondary neon-secondary">▶ COLLABORATION STRENGTHS</h2>
-            {culturalCompetencies.map((comp) => (
-              <PixelBox key={comp.id} variant="primary" borderWidth={2}>
-                <h3 className="font-pixel text-xs md:text-sm text-primary neon-primary mb-2">
-                  {comp.category.toUpperCase()}
-                </h3>
-                <div className="space-y-2">
-                  <div className="flex flex-wrap gap-1">
-                    {comp.skills.map((skill) => (
-                      <BadgeLabel key={skill} text={skill} variant="secondary" />
-                    ))}
-                  </div>
-                  <div className="pt-2 border-t-2 border-border">
-                    {comp.examples.map((ex, i) => (
-                      <div key={i} className="text-xs text-foreground font-mono mb-1">
-                        → {ex}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </PixelBox>
+              </article>
             ))}
-          </div>
+          </section>
 
-          {/* === CTA === */}
-          <PixelDivider variant="primary" />
+          <SectionDivider label="timeline" />
 
-          <PixelBox variant="primary" borderWidth={4} title="CONTACT">
-            <p className="text-xs md:text-sm font-mono text-foreground mb-4">
+          <section className="space-y-4">
+            {timelineEvents.map((event) => (
+              <article key={event.id} className="border border-border bg-surface p-6">
+                <div className="grid gap-4 md:grid-cols-[240px_1fr]">
+                  {event.image && (
+                    <Image
+                      src={event.image}
+                      alt={event.alt}
+                      className="block h-40 w-full object-cover"
+                    />
+                  )}
+                  <div className="space-y-3">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">
+                      {event.year}
+                    </p>
+                    <h2 className="text-[24px] text-ink">{event.title}</h2>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-amber">
+                      {event.location}
+                    </p>
+                    <p className="text-[13px] leading-[1.75] text-ink-dim">{event.description}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-sage">
+                      {event.type}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <SectionDivider label="competencies" />
+
+          <section className="grid gap-4 md:grid-cols-2">
+            {culturalCompetencies.map((comp) => (
+              <article key={comp.id} className="border border-border bg-surface p-6">
+                <h2 className="text-[22px] text-ink">{comp.category}</h2>
+                <div className="mt-4 flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-dim">
+                  {comp.skills.map((skill) => (
+                    <span key={skill} className="border border-border px-3 py-1">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4 space-y-2 border-l border-amber pl-4">
+                  {comp.examples.map((ex) => (
+                    <p key={ex} className="text-[13px] leading-[1.75] text-ink-dim">
+                      {ex}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <SectionDivider label="contact" />
+
+          <section className="border border-border bg-surface p-6 space-y-4">
+            <p className="max-w-2xl text-[13px] leading-[1.75] text-ink-dim">
               Open to opportunities where cultural awareness, communication, and technical skills add value to the team.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <PixelButton
-                asLink
-                href="mailto:khoaphan412@gmail.com"
-                variant="primary"
-                className="flex-1 text-center"
-              >
-                EMAIL
-              </PixelButton>
-              <PixelButton
-                asLink
-                href="https://www.linkedin.com/in/khoa-phan-ho-75771b2a9/"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="secondary"
-                className="flex-1 text-center"
-              >
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link to="/contact" className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2">
+                CONTACT
+              </Link>
+              <a href="https://www.linkedin.com/in/khoa-phan-ho-75771b2a9/" target="_blank" rel="noopener noreferrer" className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2">
                 LINKEDIN
-              </PixelButton>
+              </a>
             </div>
-          </PixelBox>
+          </section>
         </main>
       </div>
     </>

@@ -1,9 +1,15 @@
 import { Helmet } from 'react-helmet';
-import HealthBar from '../../components/game-ui/HealthBar';
-import PixelButton from '../../components/game-ui/PixelButton';
-import PixelBox from '../../components/game-ui/PixelBox';
-import PixelDivider from '../../components/game-ui/PixelDivider';
-import BadgeLabel from '../../components/game-ui/BadgeLabel';
+import { Link } from 'react-router-dom';
+
+const SectionDivider = ({ label }: { label: string }) => (
+  <div className="flex items-center gap-4">
+    <div className="h-px flex-1 bg-border" />
+    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">
+      {label}
+    </span>
+    <div className="h-px flex-1 bg-border" />
+  </div>
+);
 
 const Homepage: React.FC = () => {
   return (
@@ -16,228 +22,134 @@ const Homepage: React.FC = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background text-foreground">
-        <main className="max-w-5xl mx-auto px-4 md:px-8 py-16 space-y-12">
-          {/* === PROFILE OVERVIEW === */}
-          <div className="game-box-primary pixel-border-4 p-6 md:p-8 space-y-4 animate-slide-up relative overflow-hidden">
-            <svg
-              aria-hidden="true"
-              className="absolute inset-0 h-full w-full opacity-35 pointer-events-none"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-            >
-              <polygon points="0,0 30,0 16,24" fill="#111820" />
-              <polygon points="30,0 58,0 42,28" fill="#0d1118" />
-              <polygon points="58,0 100,0 100,24 76,18" fill="#11141c" />
-              <polygon points="0,24 16,24 36,56 0,44" fill="#0f141c" />
-              <polygon points="16,24 42,28 36,56" fill="#10171f" />
-              <polygon points="42,28 76,18 58,52" fill="#0d1218" />
-              <polygon points="76,18 100,24 100,44 58,52" fill="#111820" />
-              <polygon points="0,44 36,56 24,100 0,100" fill="#0b1016" />
-              <polygon points="36,56 58,52 46,100 24,100" fill="#11131a" />
-              <polygon points="58,52 100,44 100,100 46,100" fill="#0d1118" />
-            </svg>
-            <div className="relative z-10 flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <h1 className="font-pixel text-2xl md:text-3xl neon-primary mb-2">
-                  KHOA HO
-                </h1>
-                <p className="font-mono text-sm md:text-base text-foreground mb-3">
-                  Software Engineering Student :: Web & Game Developer
-                </p>
-                <p className="font-mono text-xs md:text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                  Software engineering student in Tampere, Finland, working on web and game
-                  projects with React, Node.js, Unity, and C#. I value practical problem-solving,
-                  teamwork, and steady learning through real projects.
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <img
-                  src="https://media.licdn.com/dms/image/v2/D4D03AQE9xIJf1NrTDw/profile-displayphoto-crop_800_800/B4DZiskihcHwAI-/0/1755241922067?e=1766620800&v=beta&t=ZqcyyXcPtwsAhqG1kM1QBYh-Y0RbqD4PL8N3vEykakg"
-                  alt="Khoa Ho"
-                  className="w-32 h-32 md:w-40 md:h-40 pixel-border-3 border-primary"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* === HIGHLIGHTS === */}
-          <PixelDivider variant="primary" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {/* Left: Core Details */}
-            <PixelBox variant="primary" borderWidth={3} title="CORE DETAILS">
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4 text-xs md:text-sm font-mono">
-                  <div className="space-y-1">
-                    <p className="text-muted-foreground">YEARS EXPERIENCE</p>
-                    <p className="text-primary neon-primary font-bold text-lg">3+</p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-muted-foreground">PRIMARY FOCUS</p>
-                    <p className="text-secondary font-bold text-lg">WEB / GAME DEV</p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-muted-foreground">SPECIALIZATION</p>
-                    <p className="text-accent neon-accent font-bold">REACT / UNITY / C#</p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-muted-foreground">LOCATION</p>
-                    <p className="text-secondary font-bold">TAMPERE, FINLAND</p>
-                  </div>
-                </div>
-              </div>
-            </PixelBox>
-
-            {/* Right: Status & Tools */}
-            <PixelBox variant="accent" borderWidth={3} title="STATUS">
+      <div className="min-h-screen bg-base text-ink">
+        <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-16 md:px-8">
+          <section className="space-y-8">
+            <div className="space-y-4">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber">
+                Software Engineering Student &amp; Game Developer
+              </p>
               <div className="space-y-3">
-                <div>
-                  <BadgeLabel text="AVAILABLE" variant="primary" />
-                  <p className="text-xs font-mono text-foreground mt-2">
-                    Open to internships, graduate roles, freelance work, and game or web projects.
-                  </p>
+                <h1 className="max-w-[10ch] text-[clamp(3.8rem,9vw,72px)] leading-[0.95] tracking-[-0.03em] text-ink md:max-w-none">
+                  Khoa Ho
+                  <span
+                    aria-hidden="true"
+                    className="ml-1 inline-block align-baseline bg-amber"
+                    style={{ width: '6px', height: '0.85em', animation: 'blink 1.1s step-end infinite' }}
+                  />
+                </h1>
+                <div className="flex flex-wrap gap-2 pt-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-dim">
+                  {['Software Engineering Student', 'Web & Game Developer', 'React / Unity / C#', 'Tampere, Finland'].map((tag, index) => (
+                    <span
+                      key={tag}
+                      className={`border px-3 py-1 ${index === 0 ? 'border-border-strong text-amber' : 'border-border text-ink-dim'}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <div className="pt-2 border-t-2 border-border">
-                  <p className="text-xs font-mono text-muted-foreground mb-2">CORE TECHNOLOGIES:</p>
-                  <div className="flex flex-wrap gap-2">
-                    <BadgeLabel text="REACT" variant="secondary" />
-                    <BadgeLabel text="NODE.JS" variant="primary" />
-                    <BadgeLabel text="UNITY" variant="accent" />
-                    <BadgeLabel text="C#" variant="secondary" />
+              </div>
+              <p className="max-w-[480px] text-[15px] leading-[1.75] text-ink-dim">
+                Software engineering student in Tampere, Finland, working on web and game projects with React, Node.js, Unity, and C#. I value practical problem-solving, teamwork, and steady learning through real projects.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="border border-border bg-surface p-6">
+                <SectionDivider label="overview" />
+                <div className="mt-6 grid grid-cols-2 gap-4 text-[11px] font-mono uppercase tracking-[0.08em]">
+                  <div className="space-y-1">
+                    <p className="text-ink-dim">Years Experience</p>
+                    <p className="text-ink">3+</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-ink-dim">Primary Focus</p>
+                    <p className="text-ink">WEB / GAME DEV</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-ink-dim">Specialization</p>
+                    <p className="text-ink">REACT / UNITY / C#</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-ink-dim">Location</p>
+                    <p className="text-ink">TAMPERE, FINLAND</p>
                   </div>
                 </div>
               </div>
-            </PixelBox>
-          </div>
 
-          {/* === SKILLS === */}
-          <PixelDivider variant="secondary" />
-
-          <PixelBox variant="secondary" borderWidth={3} title="SKILLS">
-            <div className="space-y-6">
-              <div>
-                <HealthBar
-                  label="Frontend Development"
-                  current={78}
-                  max={100}
-                  barColor="primary"
-                />
-              </div>
-              <div>
-                <HealthBar
-                  label="Backend Development"
-                  current={88}
-                  max={100}
-                  barColor="secondary"
-                />
-              </div>
-              <div>
-                <HealthBar
-                  label="Game Development"
-                  current={72}
-                  max={100}
-                  barColor="accent"
-                />
-              </div>
-              <div>
-                <HealthBar
-                  label="DevOps & Tooling"
-                  current={91}
-                  max={100}
-                  barColor="warning"
-                />
-              </div>
-              <div>
-                <HealthBar
-                  label="Team Collaboration"
-                  current={93}
-                  max={100}
-                  barColor="secondary"
-                />
+              <div className="border border-border bg-surface p-6">
+                <SectionDivider label="status" />
+                <div className="mt-6 space-y-4">
+                  <div className="space-y-2">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-sage">AVAILABLE</p>
+                    <p className="text-[13px] leading-[1.75] text-ink-dim">
+                      Open to internships, graduate roles, freelance work, and game or web projects.
+                    </p>
+                  </div>
+                  <div className="border-t border-border pt-4">
+                    <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-dim">Core technologies</p>
+                    <div className="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-dim">
+                      {['React', 'Node.js', 'Unity', 'C#'].map((item, index) => (
+                        <span
+                          key={item}
+                          className={`border px-3 py-1 ${index === 0 ? 'border-border-strong text-amber' : 'border-border text-ink-dim'}`}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </PixelBox>
+          </section>
 
-          {/* === QUICK ACTIONS === */}
-          <PixelDivider variant="accent" />
+          <SectionDivider label="skills" />
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <PixelButton
-              asLink
-              href="/superpower-kitchen"
-              variant="primary"
-              iconName="Zap"
-              iconPosition="right"
-              className="w-full py-3 text-center"
+          <section className="space-y-6">
+            <div className="space-y-4">
+              {[
+                ['Frontend Development', 78],
+                ['Backend Development', 88],
+                ['Game Development', 72],
+                ['DevOps & Tooling', 91],
+                ['Team Collaboration', 93],
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-center gap-4 font-mono text-[11px]">
+                  <div className="w-40 shrink-0 uppercase tracking-[0.08em] text-ink">{label}</div>
+                  <div className="h-[2px] flex-1 bg-border">
+                    <div className="h-full bg-amber" style={{ width: `${value}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <SectionDivider label="links" />
+
+          <section className="grid gap-3 md:grid-cols-3">
+            <Link
+              to="/superpower-kitchen"
+              className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
             >
               VIEW SKILLS
-            </PixelButton>
-            <PixelButton
-              asLink
-              href="/about"
-              variant="secondary"
-              iconName="Users"
-              iconPosition="right"
-              className="w-full py-3 text-center"
+            </Link>
+            <Link
+              to="/about"
+              className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
             >
               ABOUT ME
-            </PixelButton>
-            <PixelButton
-              asLink
-              href="mailto:khoaphan412@gmail.com"
-              variant="accent"
-              iconName="Mail"
-              iconPosition="right"
-              className="w-full py-3 text-center"
-            >
-              CONTACT
-            </PixelButton>
-            <PixelButton
-              asLink
+            </Link>
+            <a
               href="https://kaho412.itch.io/"
               target="_blank"
               rel="noopener noreferrer"
-              variant="secondary"
-              iconName="ExternalLink"
-              iconPosition="right"
-              className="w-full py-3 text-center"
+              className="border border-border-strong px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2"
             >
               GAME PROJECTS
-            </PixelButton>
-          </div>
+            </a>
+          </section>
 
-          {/* === HIGHLIGHTED LINKS === */}
-          <PixelDivider variant="primary" />
-
-          <PixelBox variant="primary" title="HIGHLIGHTED SECTIONS">
-            <div className="space-y-3 text-xs md:text-sm">
-              <div className="flex items-start gap-2">
-                <span className="text-primary font-bold flex-shrink-0">→</span>
-                <p className="text-foreground font-mono">
-                  <span className="text-secondary">Culture & Language</span> — Learn about my international background and language skills
-                </p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-primary font-bold flex-shrink-0">→</span>
-                <p className="text-foreground font-mono">
-                  <span className="text-secondary">Technical Skills</span> — Review my web, game, and tooling experience
-                </p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-primary font-bold flex-shrink-0">→</span>
-                <p className="text-foreground font-mono">
-                  <span className="text-secondary">Experience</span> — Review my work history and responsibilities
-                </p>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-primary font-bold flex-shrink-0">→</span>
-                <p className="text-foreground font-mono">
-                  <span className="text-secondary">Contact</span> — Reach out for internships, projects, or collaboration
-                </p>
-              </div>
-            </div>
-          </PixelBox>
         </main>
       </div>
     </>

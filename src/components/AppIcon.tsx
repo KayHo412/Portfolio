@@ -30,7 +30,7 @@ function isValidIconName(name: string): name is IconName {
 function Icon({
   name,
   size = 24,
-  color = "currentColor",
+  color,
   className = "",
   strokeWidth = 2,
   ...props
@@ -48,9 +48,8 @@ function Icon({
     return (
       <HelpCircle
         size={size}
-        color="gray"
         strokeWidth={strokeWidth}
-        className={className}
+        className={`${className} text-[var(--ink-dim)] hover:text-[var(--amber)] transition-colors`}
         {...props}
       />
     );
@@ -58,15 +57,19 @@ function Icon({
 
   const IconComponent = LucideIcons[formattedName] as React.ComponentType<LucideProps>;
 
-  return (
-    <IconComponent
-      size={size}
-      color={color}
-      strokeWidth={strokeWidth}
-      className={className}
-      {...props}
-    />
-  );
+  const defaultClasses = 'text-[var(--ink-dim)] hover:text-[var(--amber)] transition-colors';
+  const finalClassName = `${defaultClasses} ${className}`.trim();
+
+  const iconProps: any = {
+    size,
+    strokeWidth,
+    className: finalClassName,
+    ...props,
+  };
+
+  if (color) iconProps.color = color;
+
+  return <IconComponent {...iconProps} />;
 }
 
 export default Icon;

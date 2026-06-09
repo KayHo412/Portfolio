@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import PixelButton from '../../components/game-ui/PixelButton';
-import PixelBox from '../../components/game-ui/PixelBox';
-import PixelDivider from '../../components/game-ui/PixelDivider';
-import SkillCard from '../../components/game-ui/SkillCard';
+import { Link } from 'react-router-dom';
 import {
   SkillCategory,
   Skill,
 } from './types';
+
+const SectionDivider = ({ label }: { label: string }) => (
+  <div className="flex items-center gap-4">
+    <div className="h-px flex-1 bg-border" />
+    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">{label}</span>
+    <div className="h-px flex-1 bg-border" />
+  </div>
+);
 
 const SuperpowerKitchen: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -90,103 +95,102 @@ const SuperpowerKitchen: React.FC = () => {
         />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
-        <main className="max-w-5xl mx-auto px-4 md:px-8 py-12 space-y-12">
-          {/* === HEADER === */}
-          <PixelBox variant="primary" borderWidth={4} title="SKILLS OVERVIEW">
-            <p className="text-xs md:text-sm font-mono text-foreground">
+      <div className="min-h-screen bg-base text-ink">
+        <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-14 md:px-8">
+          <section className="space-y-4 border border-border bg-surface p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-dim">
+              SKILLS OVERVIEW
+            </p>
+            <p className="max-w-2xl text-[13px] leading-[1.75] text-ink-dim">
               Technical skills grouped by category. Select a category to filter or view all.
             </p>
-          </PixelBox>
+          </section>
 
-          {/* === CATEGORY FILTER === */}
-          <div className="space-y-3">
-            <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
-              CATEGORY FILTER:
-            </p>
-            <div className="flex flex-wrap gap-2">
+          <SectionDivider label="category filter" />
+
+          <section className="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-dim">
+            <button
+              onClick={() => setActiveCategory('all')}
+              className={`border px-3 py-2 transition-colors ${activeCategory === 'all' ? 'border-border-strong text-amber bg-surface-2' : 'border-border text-ink-dim hover:text-amber hover:bg-surface-2'}`}
+            >
+              All Skills
+            </button>
+            {skillCategories.map((cat) => (
               <button
-                onClick={() => setActiveCategory('all')}
-                className={`pixel-btn text-xs ${
-                  activeCategory === 'all'
-                    ? 'bg-primary text-primary-foreground border-primary'
-                    : 'bg-card text-foreground border-border hover:border-primary'
-                }`}
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`border px-3 py-2 transition-colors ${activeCategory === cat.id ? 'border-border-strong text-amber bg-surface-2' : 'border-border text-ink-dim hover:text-amber hover:bg-surface-2'}`}
               >
-                ALL SKILLS
+                {cat.name}
               </button>
-              {skillCategories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`pixel-btn text-xs ${
-                    activeCategory === cat.id
-                      ? 'bg-accent text-accent-foreground border-accent'
-                      : 'bg-card text-foreground border-border hover:border-accent'
-                  }`}
-                >
-                  [{cat.name.toUpperCase()}]
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* === SKILLS DISPLAY === */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredSkills.map((skill) => (
-              <SkillCard key={skill.id} skill={skill} levelMap={levelMap} />
             ))}
-          </div>
+          </section>
 
-          {/* === SUMMARY === */}
-          <PixelDivider variant="primary" />
+          <SectionDivider label="tools" />
 
-          <PixelBox variant="primary" borderWidth={3} title="SKILL SUMMARY">
-            <div className="space-y-3 text-xs md:text-sm font-mono">
-              <div className="flex justify-between">
-                <span>Total Skills Mapped:</span>
-                <span className="text-primary neon-primary font-bold">{allSkills.length}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Average Proficiency:</span>
-                <span className="text-secondary font-bold">
-                  {Math.round(allSkills.reduce((sum, s) => sum + s.proficiency, 0) / allSkills.length)}%
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span>Strong Skills (90%+):</span>
-                <span className="text-accent neon-accent font-bold">
-                  {allSkills.filter((s) => s.proficiency >= 90).length}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span>Total Years Experience:</span>
-                <span className="text-warning font-bold">
-                  {(allSkills.reduce((sum, s) => sum + s.yearsOfExperience, 0) / allSkills.length).toFixed(1)} avg
-                </span>
-              </div>
+          <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {filteredSkills.map((skill) => (
+              <article key={skill.id} className="border border-border bg-surface p-6">
+                <div className="space-y-3">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-2">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-sage">
+                        {skill.category}
+                      </p>
+                      <h2 className="text-[17px] leading-tight text-ink">{skill.name}</h2>
+                    </div>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-amber">
+                      {levelMap(skill.proficiency)}
+                    </p>
+                  </div>
+
+                  <div className="h-[2px] bg-border">
+                    <div className="h-full bg-amber" style={{ width: `${skill.proficiency}%` }} />
+                  </div>
+
+                  <p className="text-[12px] leading-[1.7] text-ink-dim">
+                    {skill.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </section>
+
+          <SectionDivider label="summary" />
+
+          <section className="grid gap-3 border border-border bg-surface p-6 text-[13px] font-mono text-ink-dim md:grid-cols-2">
+            <div className="flex justify-between gap-4">
+              <span>Total Skills Mapped:</span>
+              <span className="text-ink">{allSkills.length}</span>
             </div>
-          </PixelBox>
+            <div className="flex justify-between gap-4">
+              <span>Average Proficiency:</span>
+              <span className="text-ink">
+                {Math.round(allSkills.reduce((sum, s) => sum + s.proficiency, 0) / allSkills.length)}%
+              </span>
+            </div>
+            <div className="flex justify-between gap-4">
+              <span>Strong Skills (90%+):</span>
+              <span className="text-ink">{allSkills.filter((s) => s.proficiency >= 90).length}</span>
+            </div>
+            <div className="flex justify-between gap-4">
+              <span>Total Years Experience:</span>
+              <span className="text-ink">
+                {(allSkills.reduce((sum, s) => sum + s.yearsOfExperience, 0) / allSkills.length).toFixed(1)} avg
+              </span>
+            </div>
+          </section>
 
-          {/* === CALL TO ACTION === */}
-          <div className="flex gap-3 justify-center flex-wrap">
-            <PixelButton
-              asLink
-              href="/about"
-              variant="secondary"
-              className="text-center"
-            >
-              VIEW EXPERIENCE
-            </PixelButton>
-            <PixelButton
-              asLink
-              href="mailto:khoaphan412@gmail.com"
-              variant="primary"
-              className="text-center"
-            >
-              CONTACT
-            </PixelButton>
-          </div>
+          <SectionDivider label="contact" />
+
+          <section className="flex gap-3 flex-wrap">
+            <Link to="/about" className="border border-border-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2">
+              View Experience
+            </Link>
+            <Link to="/contact" className="border border-border-strong px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] text-ink transition-colors hover:bg-surface-2">
+              Contact
+            </Link>
+          </section>
         </main>
       </div>
     </>
